@@ -106,7 +106,7 @@ class Router:
         # split the url with '/'
         packet_len = len(str_packet.split('/'))
         # print(str_packet)
-        print(len(self.fib))
+        print("in logestPrefix- self.fib: ", self.fib)
 
         # match how many strings between the packet name and fib
         for k in range(len(self.fib)):
