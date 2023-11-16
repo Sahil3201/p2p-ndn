@@ -13,15 +13,15 @@ class PercentSensor():
         self.data = random.randint(0,100)
 
 
-class RangeIntSensor(minVal, maxVal):
-    def __init__(self):
+class RangeIntSensor():
+    def __init__(self, minVal, maxVal):
         self.data = random.randint(minVal, maxVal)
     def update(self):
         self.data = random.randint(minVal, maxVal)
 
 
-class RangeSensor(minVal, maxVal):
-    def __init__(self):
+class RangeSensor():
+    def __init__(self, minVal, maxVal):
         self.data = random.randint(minVal, maxVal)
     def update(self):
         self.data = random.randint(minVal, maxVal)
