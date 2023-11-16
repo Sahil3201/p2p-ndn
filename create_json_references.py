@@ -17,6 +17,8 @@ json_array = []
 port = 33001
 
 def get_addr(sensor_no=0):
+    global port
+    port = port + 2
     return {
                 "listen port": port,
                 "send port": port+1,
