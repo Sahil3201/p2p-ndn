@@ -1,13 +1,10 @@
 import json
 
-Addresses = ["10.35.70.14", "10.35.70.45"]
+Addresses = ["10.35.70.4", "10.35.70.46"]
 
-Networks = ["divers", "scientists"]
+Networks = ["weather", "soil", 'irrigation', 'livestock', 'crop']
 
-Divers = ["diver1","diver2","diver3","diver4","diver5"]
-DiverNeighborList = [["/divers/diver3","/divers/diver4","/scientists/scientist1"], ["/divers/diver4","/divers/diver5","/scientists/scientist1","/scientists/scientist4"], ["/divers/diver1"], ["/divers/diver1","/divers/diver2"], ["/divers/diver2","/scientists/scientist2"]]
-
-Scientists = ["scientist1", "scientist2", "scientist3","scientist4","scientist5"]
+weatherSensorList = ['','']
 
 DiverSensors = ["light", "oxygen", "position", "pressure", "radar", "heartrate", "battery", "camera"]
 
