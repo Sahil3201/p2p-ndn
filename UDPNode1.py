@@ -151,8 +151,8 @@ def handle_packet(router, packet,socket):
 # Listen for incoming datagrams
 def inbound(socket,name,lock,router):
     while(True):
-        bytesAddressPair = socket.recvfrom(bufferSize)
         print("running inbound")
+        bytesAddressPair = socket.recvfrom(bufferSize)
         lock.acquire()
         message = bytesAddressPair[0]
         handle_packet(router,message,socket)
