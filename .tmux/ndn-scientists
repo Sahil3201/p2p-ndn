@@ -44,49 +44,49 @@ tmux new-window -d -n s5shipradar
 tmux new-window -d -n s5fauna
 tmux new-window -d -n s5optimizer
 tmux new-window -d -n s5alert
-tmux send-keys -t Scientists:bash "echo Base Control"
-tmux send-keys -t Scientists:sone "python node.py --name /scientists/scientist1"
-tmux send-keys -t Scientists:s1winds "python node.py --name /scientists/scientist1/winds"
-tmux send-keys -t Scientists:s1windd "python node.py --name /scientists/scientist1/windd"
-tmux send-keys -t Scientists:s1temperature "python node.py --name /scientists/scientist1/temperature"
-tmux send-keys -t Scientists:s1precipitation "python node.py --name /scientists/scientist1/precipitation"
-tmux send-keys -t Scientists:s1shipradar "python node.py --name /scientists/scientist1/shipradar"
-tmux send-keys -t Scientists:s1fauna "python node.py --name /scientists/scientist1/fauna"
-tmux send-keys -t Scientists:s1optimizer "python node.py --name /scientists/scientist1/optimizer"
-tmux send-keys -t Scientists:s1alert "python node.py --name /scientists/scientist1/alert"
-tmux send-keys -t Scientists:stwo "python node.py --name /scientists/scientist2"
-tmux send-keys -t Scientists:s2winds "python node.py --name /scientists/scientist2/winds"
-tmux send-keys -t Scientists:s2windd "python node.py --name /scientists/scientist2/windd"
-tmux send-keys -t Scientists:s2temperature "python node.py --name /scientists/scientist2/temperature"
-tmux send-keys -t Scientists:s2precipitation "python node.py --name /scientists/scientist2/precipitation"
-tmux send-keys -t Scientists:s2shipradar "python node.py --name /scientists/scientist2/shipradar"
-tmux send-keys -t Scientists:s2fauna "python node.py --name /scientists/scientist2/fauna"
-tmux send-keys -t Scientists:s2optimizer "python node.py --name /scientists/scientist2/optimizer"
-tmux send-keys -t Scientists:s2alert "python node.py --name /scientists/scientist2/alert"
-tmux send-keys -t Scientists:sthree "python node.py --name /scientists/scientist3"
-tmux send-keys -t Scientists:s3winds "python node.py --name /scientists/scientist3/winds"
-tmux send-keys -t Scientists:s3windd "python node.py --name /scientists/scientist3/windd"
-tmux send-keys -t Scientists:s3temperature "python node.py --name /scientists/scientist3/temperature"
-tmux send-keys -t Scientists:s3precipitation "python node.py --name /scientists/scientist3/precipitation"
-tmux send-keys -t Scientists:s3shipradar "python node.py --name /scientists/scientist3/shipradar"
-tmux send-keys -t Scientists:s3fauna "python node.py --name /scientists/scientist3/fauna"
-tmux send-keys -t Scientists:s3optimizer "python node.py --name /scientists/scientist3/optimizer"
-tmux send-keys -t Scientists:s3alert "python node.py --name /scientists/scientist3/alert"
-tmux send-keys -t Scientists:sfour "python node.py --name /scientists/scientist4"
-tmux send-keys -t Scientists:s4winds "python node.py --name /scientists/scientist4/winds"
-tmux send-keys -t Scientists:s4windd "python node.py --name /scientists/scientist4/windd"
-tmux send-keys -t Scientists:s4temperature "python node.py --name /scientists/scientist4/temperature"
-tmux send-keys -t Scientists:s4precipitation "python node.py --name /scientists/scientist4/precipitation"
-tmux send-keys -t Scientists:s4shipradar "python node.py --name /scientists/scientist4/shipradar"
-tmux send-keys -t Scientists:s4fauna "python node.py --name /scientists/scientist4/fauna"
-tmux send-keys -t Scientists:s4optimizer "python node.py --name /scientists/scientist4/optimizer"
-tmux send-keys -t Scientists:s4alert "python node.py --name /scientists/scientist4/alert"
-tmux send-keys -t Scientists:sfive "python node.py --name /scientists/scientist5"
-tmux send-keys -t Scientists:s5winds "python node.py --name /scientists/scientist5/winds"
-tmux send-keys -t Scientists:s5windd "python node.py --name /scientists/scientist5/windd"
-tmux send-keys -t Scientists:s5temperature "python node.py --name /scientists/scientist5/temperature"
-tmux send-keys -t Scientists:s5precipitation "python node.py --name /scientists/scientist5/precipitation"
-tmux send-keys -t Scientists:s5shipradar "python node.py --name /scientists/scientist5/shipradar"
-tmux send-keys -t Scientists:s5fauna "python node.py --name /scientists/scientist5/fauna"
-tmux send-keys -t Scientists:s5optimizer "python node.py --name /scientists/scientist5/optimizer"
-tmux send-keys -t Scientists:s5alert "python node.py --name /scientists/scientist5/alert"
+tmux send-keys -t Scientists:bash "echo Base Control" Enter
+tmux send-keys -t Scientists:sone "python node.py --name /scientists/scientist1" Enter
+tmux send-keys -t Scientists:s1winds "python node.py --name /scientists/scientist1/winds" Enter
+tmux send-keys -t Scientists:s1windd "python node.py --name /scientists/scientist1/windd" Enter
+tmux send-keys -t Scientists:s1temperature "python node.py --name /scientists/scientist1/temperature" Enter
+tmux send-keys -t Scientists:s1precipitation "python node.py --name /scientists/scientist1/precipitation" Enter
+tmux send-keys -t Scientists:s1shipradar "python node.py --name /scientists/scientist1/shipradar" Enter
+tmux send-keys -t Scientists:s1fauna "python node.py --name /scientists/scientist1/fauna" Enter
+tmux send-keys -t Scientists:s1optimizer "python node.py --name /scientists/scientist1/optimizer" Enter
+tmux send-keys -t Scientists:s1alert "python node.py --name /scientists/scientist1/alert" Enter
+tmux send-keys -t Scientists:stwo "python node.py --name /scientists/scientist2" Enter
+tmux send-keys -t Scientists:s2winds "python node.py --name /scientists/scientist2/winds" Enter
+tmux send-keys -t Scientists:s2windd "python node.py --name /scientists/scientist2/windd" Enter
+tmux send-keys -t Scientists:s2temperature "python node.py --name /scientists/scientist2/temperature" Enter
+tmux send-keys -t Scientists:s2precipitation "python node.py --name /scientists/scientist2/precipitation" Enter
+tmux send-keys -t Scientists:s2shipradar "python node.py --name /scientists/scientist2/shipradar" Enter
+tmux send-keys -t Scientists:s2fauna "python node.py --name /scientists/scientist2/fauna" Enter
+tmux send-keys -t Scientists:s2optimizer "python node.py --name /scientists/scientist2/optimizer" Enter
+tmux send-keys -t Scientists:s2alert "python node.py --name /scientists/scientist2/alert" Enter
+tmux send-keys -t Scientists:sthree "python node.py --name /scientists/scientist3" Enter
+tmux send-keys -t Scientists:s3winds "python node.py --name /scientists/scientist3/winds" Enter
+tmux send-keys -t Scientists:s3windd "python node.py --name /scientists/scientist3/windd" Enter
+tmux send-keys -t Scientists:s3temperature "python node.py --name /scientists/scientist3/temperature" Enter
+tmux send-keys -t Scientists:s3precipitation "python node.py --name /scientists/scientist3/precipitation" Enter
+tmux send-keys -t Scientists:s3shipradar "python node.py --name /scientists/scientist3/shipradar" Enter
+tmux send-keys -t Scientists:s3fauna "python node.py --name /scientists/scientist3/fauna" Enter
+tmux send-keys -t Scientists:s3optimizer "python node.py --name /scientists/scientist3/optimizer" Enter
+tmux send-keys -t Scientists:s3alert "python node.py --name /scientists/scientist3/alert" Enter
+tmux send-keys -t Scientists:sfour "python node.py --name /scientists/scientist4" Enter
+tmux send-keys -t Scientists:s4winds "python node.py --name /scientists/scientist4/winds" Enter
+tmux send-keys -t Scientists:s4windd "python node.py --name /scientists/scientist4/windd" Enter
+tmux send-keys -t Scientists:s4temperature "python node.py --name /scientists/scientist4/temperature" Enter
+tmux send-keys -t Scientists:s4precipitation "python node.py --name /scientists/scientist4/precipitation" Enter
+tmux send-keys -t Scientists:s4shipradar "python node.py --name /scientists/scientist4/shipradar" Enter
+tmux send-keys -t Scientists:s4fauna "python node.py --name /scientists/scientist4/fauna" Enter
+tmux send-keys -t Scientists:s4optimizer "python node.py --name /scientists/scientist4/optimizer" Enter
+tmux send-keys -t Scientists:s4alert "python node.py --name /scientists/scientist4/alert" Enter
+tmux send-keys -t Scientists:sfive "python node.py --name /scientists/scientist5" Enter
+tmux send-keys -t Scientists:s5winds "python node.py --name /scientists/scientist5/winds" Enter
+tmux send-keys -t Scientists:s5windd "python node.py --name /scientists/scientist5/windd" Enter
+tmux send-keys -t Scientists:s5temperature "python node.py --name /scientists/scientist5/temperature" Enter
+tmux send-keys -t Scientists:s5precipitation "python node.py --name /scientists/scientist5/precipitation" Enter
+tmux send-keys -t Scientists:s5shipradar "python node.py --name /scientists/scientist5/shipradar" Enter
+tmux send-keys -t Scientists:s5fauna "python node.py --name /scientists/scientist5/fauna" Enter
+tmux send-keys -t Scientists:s5optimizer "python node.py --name /scientists/scientist5/optimizer" Enter
+tmux send-keys -t Scientists:s5alert "python node.py --name /scientists/scientist5/alert" Enter
