@@ -49,7 +49,7 @@ tmux new-window -d -n i1pH
 tmux new-window -d -n i1evapotranspiration
 tmux new-window -d -n i1turbidity
 tmux send-keys -t irrigations:bash "echo Base Control" Enter
-tmux send-keys -t irrigations:sone "python3 node.py --name /irrigations/irrigation1" Enter
+tmux send-keys -t irrigations:ione "python3 node.py --name /irrigations/irrigation1" Enter
 tmux send-keys -t irrigations:i1moisture "python3 node.py --name /irrigations/irrigation1/moisture" Enter
 tmux send-keys -t irrigations:i1flow_rate "python3 node.py --name /irrigations/irrigation1/flow_rate" Enter
 tmux send-keys -t irrigations:i1pressure "python3 node.py --name /irrigations/irrigation1/pressure" Enter
