@@ -1,5 +1,5 @@
 tmux new-session -d -s weathers
-tmux new-window -n sone
+tmux new-window -n wone
 tmux new-window -d -n w1temperature
 tmux new-window -d -n w1humidity
 tmux new-window -d -n w1wind_speed
@@ -9,7 +9,7 @@ tmux new-window -d -n w1evapotranspiration
 tmux new-window -d -n w1atmospheric_gas
 tmux new-window -d -n w1barometric_pressure
 tmux send-keys -t weathers:bash "echo Base Control" Enter
-tmux send-keys -t weathers:sone "python3 node.py --name /weathers/weather1" Enter
+tmux send-keys -t weathers:wone "python3 node.py --name /weathers/weather1" Enter
 tmux send-keys -t weathers:w1temperature "python3 node.py --name /weathers/weather1/temperature" Enter
 tmux send-keys -t weathers:w1humidity "python3 node.py --name /weathers/weather1/humidity" Enter
 tmux send-keys -t weathers:w1wind_speed "python3 node.py --name /weathers/weather1/wind_speed" Enter
@@ -39,7 +39,7 @@ tmux send-keys -t soils:s1organic_matter_content "python3 node.py --name /soils/
 tmux send-keys -t soils:s1pH "python3 node.py --name /soils/soil1/pH" Enter
 
 tmux new-session -d -s irrigations
-tmux new-window -n sone
+tmux new-window -n ione
 tmux new-window -d -n i1moisture
 tmux new-window -d -n i1flow_rate
 tmux new-window -d -n i1pressure
