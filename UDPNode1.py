@@ -70,6 +70,7 @@ def outbound(socket,router,lock,interface):
         neighbor = router.longestPrefix(interest)
         packet = (interest, interface)
         router.setPit(interest,interface)
+        print("Sending: ",json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         socket.sendto(json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         lock.release()
         #msgFromServer = socket.recvfrom(bufferSize)
