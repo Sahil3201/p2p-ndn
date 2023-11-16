@@ -30,13 +30,13 @@ tmux new-window -d -n s1organic_matter_content
 tmux new-window -d -n s1pH
 tmux send-keys -t soils:bash "echo Base Control" Enter
 tmux send-keys -t soils:sone "python3 node.py --name /soils/soil1" Enter
-tmux send-keys -t soils:s1temperature "python3 node.py --name /soils/soil1/moisture" Enter
-tmux send-keys -t soils:s1humidity "python3 node.py --name /soils/soil1/erosion" Enter
-tmux send-keys -t soils:s1wind_speed "python3 node.py --name /soils/soil1/salinity" Enter
-tmux send-keys -t soils:s1rain_gauge "python3 node.py --name /soils/soil1/texture" Enter
-tmux send-keys -t soils:s1solar_radiation "python3 node.py --name /soils/soil1/temperature" Enter
-tmux send-keys -t soils:s1evapotranspiration "python3 node.py --name /soils/soil1/organic_matter_content" Enter
-tmux send-keys -t soils:s1atmospheric_gas "python3 node.py --name /soils/soil1/pH" Enter
+tmux send-keys -t soils:s1moisture "python3 node.py --name /soils/soil1/moisture" Enter
+tmux send-keys -t soils:s1erosion "python3 node.py --name /soils/soil1/erosion" Enter
+tmux send-keys -t soils:s1salinity "python3 node.py --name /soils/soil1/salinity" Enter
+tmux send-keys -t soils:s1texture "python3 node.py --name /soils/soil1/texture" Enter
+tmux send-keys -t soils:s1temperature "python3 node.py --name /soils/soil1/temperature" Enter
+tmux send-keys -t soils:s1organic_matter_content "python3 node.py --name /soils/soil1/organic_matter_content" Enter
+tmux send-keys -t soils:s1pH "python3 node.py --name /soils/soil1/pH" Enter
 
 tmux new-session -d -s irrigations
 tmux new-window -n sone
