@@ -41,7 +41,7 @@ for i in range(len(nodeNeighborList)):
                 "neighbors": [getNodeAddr(random.choice(nodeNeighborList)) for _ in range(random.randint(1,3))]
             }
             ]})
-    for j in range(len(sensorList)):
+    for j in range(len(sensorList[i])):
         json_array.append({f'{nodeName}/{sensorList[i][j]}' : [
         get_addr(i), 
         {
