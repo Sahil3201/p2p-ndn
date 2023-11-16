@@ -50,11 +50,11 @@ tmux new-window -d -n i1evapotranspiration
 tmux new-window -d -n i1turbidity
 tmux send-keys -t irrigations:bash "echo Base Control" Enter
 tmux send-keys -t irrigations:sone "python3 node.py --name /irrigations/irrigation1" Enter
-tmux send-keys -t irrigations:s1temperature "python3 node.py --name /irrigations/irrigation1/moisture" Enter
-tmux send-keys -t irrigations:s1humidity "python3 node.py --name /irrigations/irrigation1/flow_rate" Enter
-tmux send-keys -t irrigations:s1wind_speed "python3 node.py --name /irrigations/irrigation1/pressure" Enter
-tmux send-keys -t irrigations:s1rain_gauge "python3 node.py --name /irrigations/irrigation1/quality" Enter
-tmux send-keys -t irrigations:s1solar_radiation "python3 node.py --name /irrigations/irrigation1/pump_status" Enter
-tmux send-keys -t irrigations:s1evapotranspiration "python3 node.py --name /irrigations/irrigation1/pH" Enter
-tmux send-keys -t irrigations:s1atmospheric_gas "python3 node.py --name /irrigations/irrigation1/evapotranspiration" Enter
-tmux send-keys -t irrigations:s1atmospheric_gas "python3 node.py --name /irrigations/irrigation1/turbidity" Enter
+tmux send-keys -t irrigations:i1temperature "python3 node.py --name /irrigations/irrigation1/moisture" Enter
+tmux send-keys -t irrigations:i1humidity "python3 node.py --name /irrigations/irrigation1/flow_rate" Enter
+tmux send-keys -t irrigations:i1wind_speed "python3 node.py --name /irrigations/irrigation1/pressure" Enter
+tmux send-keys -t irrigations:i1rain_gauge "python3 node.py --name /irrigations/irrigation1/quality" Enter
+tmux send-keys -t irrigations:i1solar_radiation "python3 node.py --name /irrigations/irrigation1/pump_status" Enter
+tmux send-keys -t irrigations:i1evapotranspiration "python3 node.py --name /irrigations/irrigation1/pH" Enter
+tmux send-keys -t irrigations:i1atmospheric_gas "python3 node.py --name /irrigations/irrigation1/evapotranspiration" Enter
+tmux send-keys -t irrigations:i1atmospheric_gas "python3 node.py --name /irrigations/irrigation1/turbidity" Enter
