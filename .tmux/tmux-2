@@ -1,13 +1,13 @@
 tmux new-session -d -s livestocks
 tmux new-window -n lone
-tmux new-window -d -n ltemperature1
-tmux new-window -d -n lRFID_Tag1
-tmux new-window -d -n lheart_rate_monitor1
-tmux new-window -d -n lmilk_production1
-tmux new-window -d -n lconsumption_meter1
-tmux new-window -d -n lproximity_meters1
-tmux new-window -d -n lfeed_intake1
-tmux new-window -d -n lactivity_monitor1
+tmux new-window -d -n l1temperature
+tmux new-window -d -n l1RFID_Tag
+tmux new-window -d -n l1heart_rate_monitor
+tmux new-window -d -n l1milk_production
+tmux new-window -d -n l1consumption_meter
+tmux new-window -d -n l1proximity_meters
+tmux new-window -d -n l1feed_intake
+tmux new-window -d -n l1activity_monitor
 tmux send-keys -t livestocks:bash "echo Base Control" Enter
 tmux send-keys -t livestocks:lone "python3 node.py --name /livestocks/livestock1" Enter
 tmux send-keys -t livestocks:l1temperature "python3 node.py --name /livestocks/livestock1/temperature" Enter
