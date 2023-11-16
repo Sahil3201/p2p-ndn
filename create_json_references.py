@@ -45,7 +45,7 @@ for i in range(len(nodeNeighborList)):
         json_array.append({f'{nodeName}/{sensorList[i][j]}' : [
         get_addr(i), 
         {
-                "neighbors": nodeName
+                "neighbors": [nodeName]
             }
             ]})
 

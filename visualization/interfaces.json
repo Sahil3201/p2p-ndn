@@ -8,7 +8,7 @@
             },
             {
                 "neighbors": [
-                    "/irrigations/irrigation1"
+                    "/weathers/weather1"
                 ]
             }
         ]
@@ -21,9 +21,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -35,9 +33,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -49,9 +45,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -63,9 +57,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -77,9 +69,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -91,9 +81,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -105,9 +93,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -119,9 +105,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/weathers/weather1"
-                ]
+                "neighbors": "/weathers/weather1"
             }
         ]
     },
@@ -134,8 +118,8 @@
             },
             {
                 "neighbors": [
-                    "/crops/crop1",
-                    "/crops/crop1"
+                    "/weathers/weather1",
+                    "/soils/soil1"
                 ]
             }
         ]
@@ -148,9 +132,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -162,9 +144,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -176,9 +156,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -190,9 +168,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -204,9 +180,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -218,9 +192,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -232,9 +204,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/soils/soil1"
-                ]
+                "neighbors": "/soils/soil1"
             }
         ]
     },
@@ -247,7 +217,8 @@
             },
             {
                 "neighbors": [
-                    "/irrigations/irrigation1",
+                    "/weathers/weather1",
+                    "/livestocks/livestock1",
                     "/soils/soil1"
                 ]
             }
@@ -261,9 +232,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -275,9 +244,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -289,9 +256,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -303,9 +268,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -317,9 +280,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -331,9 +292,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -345,9 +304,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -359,9 +316,7 @@
                 "address": "10.35.70.4"
             },
             {
-                "neighbors": [
-                    "/irrigations/irrigation1"
-                ]
+                "neighbors": "/irrigations/irrigation1"
             }
         ]
     },
@@ -374,8 +329,7 @@
             },
             {
                 "neighbors": [
-                    "/crops/crop1",
-                    "/livestocks/livestock1"
+                    "/weathers/weather1"
                 ]
             }
         ]
@@ -388,9 +342,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -402,9 +354,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -416,9 +366,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -430,9 +378,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -444,9 +390,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -458,9 +402,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -472,9 +414,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -486,9 +426,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/livestocks/livestock1"
-                ]
+                "neighbors": "/livestocks/livestock1"
             }
         ]
     },
@@ -501,8 +439,6 @@
             },
             {
                 "neighbors": [
-                    "/irrigations/irrigation1",
-                    "/soils/soil1",
                     "/soils/soil1"
                 ]
             }
@@ -516,9 +452,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -530,9 +464,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -544,9 +476,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -558,9 +488,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -572,9 +500,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -586,9 +512,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     },
@@ -600,9 +524,7 @@
                 "address": "10.35.70.46"
             },
             {
-                "neighbors": [
-                    "/crops/crop1"
-                ]
+                "neighbors": "/crops/crop1"
             }
         ]
     }
