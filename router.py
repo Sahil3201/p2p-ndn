@@ -4,9 +4,9 @@ class Router:
     def __init__(self, name):
         self.multi_request = 0
         self.name = name  # device name
-        self.cs = dict()  # name: data: freshness
-        self.pit = list(tuple())  # name
-        self.fib = list(tuple())  # prefix, ip address, ongoing interface
+        self.cs = dict()  # name: data: freshness # content store
+        self.pit = list(tuple())  # name # Pending interest table
+        self.fib = list(tuple())  # prefix, ip address, ongoing interface # Forwarding information base
         self.location = list(tuple()) #name, address, listen port, send port
 
         with open("interfaces.json", 'r') as load_f:
@@ -129,16 +129,17 @@ class Router:
             # If matches more than one string, it is added to the dictionary
             if prefix_len > 1:
                 match_fib[self.fib[k][0]] = loop_len
-
+        print("match_fib: ", match_fib)
         # rank the dictionary
         resorted = sorted(match_fib.items(), key=lambda x: x[1], reverse=True)
-
+        print("resorted: ", resorted)
         # return the data has the same format with fib table
         resorted_fib = list(tuple())
         for i in range(len(resorted)):
             for k in self.fib:
                 if (resorted[i][0] == k[0]) & (len(k[0].split('/')) != 4):
                     resorted_fib.append(k)
+        print("resorted_fib:", resorted_fib)
         return resorted_fib
 
 

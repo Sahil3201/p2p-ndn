@@ -45,7 +45,7 @@ tmux new-window -d -n d5heartrate
 tmux new-window -d -n d5battery
 tmux new-window -d -n d5camera
 tmux send-keys -t Divers:bash "echo Base Control"
-tmux send-keys -t Divers:sone "python3 node.py --name /divers/diver1" Enter
+tmux send-keys -t Divers:done "python3 node.py --name /divers/diver1" Enter
 tmux send-keys -t Divers:d1light "python3 node.py --name /divers/diver1/light" Enter
 tmux send-keys -t Divers:d1oxygen "python3 node.py --name /divers/diver1/oxygen" Enter
 tmux send-keys -t Divers:d1position "python3 node.py --name /divers/diver1/position" Enter
@@ -54,7 +54,7 @@ tmux send-keys -t Divers:d1radar "python3 node.py --name /divers/diver1/radar" E
 tmux send-keys -t Divers:d1heartrate "python3 node.py --name /divers/diver1/heartrate" Enter
 tmux send-keys -t Divers:d1battery "python3 node.py --name /divers/diver1/battery" Enter
 tmux send-keys -t Divers:d1camera "python3 node.py --name /divers/diver1/camera" Enter
-tmux send-keys -t Divers:stwo "python3 node.py --name /divers/diver2" Enter
+tmux send-keys -t Divers:dtwo "python3 node.py --name /divers/diver2" Enter
 tmux send-keys -t Divers:d2light "python3 node.py --name /divers/diver2/light" Enter
 tmux send-keys -t Divers:d2oxygen "python3 node.py --name /divers/diver2/oxygen" Enter
 tmux send-keys -t Divers:d2position "python3 node.py --name /divers/diver2/position" Enter
@@ -63,7 +63,7 @@ tmux send-keys -t Divers:d2radar "python3 node.py --name /divers/diver2/radar" E
 tmux send-keys -t Divers:d2heartrate "python3 node.py --name /divers/diver2/heartrate" Enter
 tmux send-keys -t Divers:d2battery "python3 node.py --name /divers/diver2/battery" Enter
 tmux send-keys -t Divers:d2camera "python3 node.py --name /divers/diver2/camera" Enter
-tmux send-keys -t Divers:sthree "python3 node.py --name /divers/diver3" Enter
+tmux send-keys -t Divers:dthree "python3 node.py --name /divers/diver3" Enter
 tmux send-keys -t Divers:d3light "python3 node.py --name /divers/diver3/light" Enter
 tmux send-keys -t Divers:d3oxygen "python3 node.py --name /divers/diver3/oxygen" Enter
 tmux send-keys -t Divers:d3position "python3 node.py --name /divers/diver3/position" Enter
@@ -72,7 +72,7 @@ tmux send-keys -t Divers:d3radar "python3 node.py --name /divers/diver3/radar" E
 tmux send-keys -t Divers:d3heartrate "python3 node.py --name /divers/diver3/heartrate" Enter
 tmux send-keys -t Divers:d3battery "python3 node.py --name /divers/diver3/battery" Enter
 tmux send-keys -t Divers:d3camera "python3 node.py --name /divers/diver3/camera" Enter
-tmux send-keys -t Divers:sfour "python3 node.py --name /divers/diver4" Enter
+tmux send-keys -t Divers:dfour "python3 node.py --name /divers/diver4" Enter
 tmux send-keys -t Divers:d4light "python3 node.py --name /divers/diver4/light" Enter
 tmux send-keys -t Divers:d4oxygen "python3 node.py --name /divers/diver4/oxygen" Enter
 tmux send-keys -t Divers:d4position "python3 node.py --name /divers/diver4/position" Enter
@@ -81,7 +81,7 @@ tmux send-keys -t Divers:d4radar "python3 node.py --name /divers/diver4/radar" E
 tmux send-keys -t Divers:d4heartrate "python3 node.py --name /divers/diver4/heartrate" Enter
 tmux send-keys -t Divers:d4battery "python3 node.py --name /divers/diver4/battery" Enter
 tmux send-keys -t Divers:d4camera "python3 node.py --name /divers/diver4/camera" Enter
-tmux send-keys -t Divers:sfive "python3 node.py --name /divers/diver5" Enter
+tmux send-keys -t Divers:dfive "python3 node.py --name /divers/diver5" Enter
 tmux send-keys -t Divers:d5light "python3 node.py --name /divers/diver5/light" Enter
 tmux send-keys -t Divers:d5oxygen "python3 node.py --name /divers/diver5/oxygen" Enter
 tmux send-keys -t Divers:d5position "python3 node.py --name /divers/diver5/position" Enter
