@@ -19,6 +19,8 @@ def assign_class(node_interface):
         # Percent values
         elif(sensor_name in ['humidity', 'windSpeed']):
             return Interfaces.RangeSensor(1, 99)
+        else:
+            return Interfaces.RangeSensor(1, 99)
 
     # If node
     else:
