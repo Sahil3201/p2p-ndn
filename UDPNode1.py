@@ -87,6 +87,7 @@ def fresh(name, router):
             return True      
 
 def handle_packet(router, packet,socket):
+    print("HANDLING PACKET")
     packet = json.loads(packet.decode())
     name = packet[0]
     #Interest packet
