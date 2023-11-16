@@ -1,7 +1,7 @@
 # p2p name-defined-network
 Group project for TCD module CS7NS1: Scalable Computing. We create a peer-to-peer name defined network which is built to communicate on multiple Raspberry Pi's. We use an underwater mission as an example emulation.
 
-Group 18 NDN run instructions.<br />
+Group 4 NDN run instructions.<br />
 The following instructions is to run our two name defined networks on independent Raspberry Pi’s.<br />
 
 On Pi 1 Cd into the project folder.<br />

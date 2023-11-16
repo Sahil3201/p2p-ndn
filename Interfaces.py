@@ -2,8 +2,8 @@ import random
 
 import numpy as np
 
-def connect_sensor(self, prefix, interface):
-    self.router.setPit(prefix, interface)
+# def connect_sensor(self, prefix, interface):
+#     self.router.setPit(prefix, interface)
 
 class Oxygen():
     def __init__(self):
