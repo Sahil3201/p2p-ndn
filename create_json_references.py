@@ -2,42 +2,42 @@ import json
 
 Addresses = ["10.35.70.14", "10.35.70.45"]
 
-Networks = ["divers", "scientists"]
+Networks = ["crops", "soils"]
 
-Divers = ["diver1","diver2","diver3","diver4","diver5"]
-DiverNeighborList = [["/divers/diver3","/divers/diver4","/scientists/scientist1"], ["/divers/diver4","/divers/diver5","/scientists/scientist1","/scientists/scientist4"], ["/divers/diver1"], ["/divers/diver1","/divers/diver2"], ["/divers/diver2","/scientists/scientist2"]]
+Crops = ["crop1","crop2","crop3","crop4","crop5"]
+CropNeighborList = [["/crops/crop3","/crops/crop4","/soils/soil1"], ["/crops/crop4","/crops/crop5","/soils/soil1","/soils/soil4"], ["/crops/crop1"], ["/crops/crop1","/crops/crop2"], ["/crops/crop2","/soils/soil2"]]
 
-Scientists = ["scientist1", "scientist2", "scientist3","scientist4","scientist5"]
+Soils = ["soil1", "soil2", "soil3","soil4","soil5"]
 
-DiverSensors = ["light", "oxygen", "position", "pressure", "radar", "heartrate", "battery", "camera"]
+CropSensors = ["humidity", "oxygen", "ethylene", "carbonDioxide", "temperature", "moisture", "rainGauge", "camera"]
 
-ScientistSensors = ["shipradar", "fauna", "optimizer", "winds", "windd", "temperature", "precipitation", "alert"]
-ScientistNeighborList = [["/scientists/scientist3","/scientists/scientist4","/divers/diver1","/divers/diver2"], ["/scientists/scientist3","/divers/diver2","/divers/diver5"],["/scientists/scientist1","/scientists/scientist2","/scientists/scientist4","/scientists/scientist5"], ["/scientists/scientist3"]]
+SoilSensors = ["moisture", "erosion", "salinity", "winds", "organicMatter", "temperature", "pH", "alert"]
+SoilNeighborList = [["/soils/soil3","/soils/soil4","/crops/crop1","/crops/crop2"], ["/soils/soil3","/crops/crop2","/crops/crop5"],["/soils/soil1","/soils/soil2","/soils/soil4","/soils/soil5"], ["/soils/soil3"]]
 
 json_array = []
 
 listen_port = 33001
 send_port = 33002
 neighbor_itertator = 0
-for diver in Divers:
-    diver_name = "/" + Networks[0] + "/" + diver
-    json_array.append({diver_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : DiverNeighborList[neighbor_itertator]}]})
+for crop in Crops:
+    crop_name = "/" + Networks[0] + "/" + crop
+    json_array.append({crop_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : CropNeighborList[neighbor_itertator]}]})
     listen_port += 2
     send_port += 2
     neighbor_itertator +=1
-    for sensor in DiverSensors:
-        json_array.append({"/" + Networks[0] + "/" + diver + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : [diver_name]}]})
+    for sensor in CropSensors:
+        json_array.append({"/" + Networks[0] + "/" + crop + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : [crop_name]}]})
         listen_port += 2
         send_port += 2
 
 neighbor_itertator = 0
-for scientist in Scientists:
-    scientist_name = "/" + Networks[1] + "/" + scientist
-    json_array.append({scientist_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : ScientistNeighborList[neighbor_itertator]}]})
+for soil in Soils:
+    soil_name = "/" + Networks[1] + "/" + soil
+    json_array.append({soil_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : SoilNeighborList[neighbor_itertator]}]})
     listen_port += 2
     send_port += 2
-    for sensor in ScientistSensors:
-        json_array.append({"/" + Networks[1] + "/" + scientist + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : [scientist_name]}]})
+    for sensor in SoilSensors:
+        json_array.append({"/" + Networks[1] + "/" + soil + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : [soil_name]}]})
         listen_port += 2
         send_port += 2
 

@@ -12,20 +12,20 @@ class Oxygen():
         if (random.random() < 0.5):
             self.data = max(0, self.data-1)
 
-class Battery():
+class RainGauge():
     def __init__(self):
         self.data = 100
     def update(self):
         if (random.random() < 0.75):
             self.data = max(0, self.data-1)
 
-class Radar():
-    def __init__(self, fish, position):
+class Temperature():
+    def __init__(self, fish, ethylene):
         self.data = {}
         key = 0
         for f in fish:
-            if np.linalg.norm(position - f.position) < 50:
-                self.data[key] = [round(np.linalg.norm(position - f.position)), f.z, f.speed]
+            if np.linalg.norm(ethylene - f.ethylene) < 50:
+                self.data[key] = [round(np.linalg.norm(ethylene - f.ethylene)), f.z, f.speed]
                 key = key + 1
 
 class Heart():
@@ -34,7 +34,7 @@ class Heart():
     def update(self):
         self.data = (self.data + random.randint(60, 150)) / 2
 
-class Position():
+class Ethylene():
     def __init__(self):
         self.x = random.randint(0, 500)
         self.y = random.randint(0, 500)
@@ -46,13 +46,13 @@ class Position():
         self.z = min(200, max(0, self.z + sign(0.5) * random.randint(0, 10)))
         self.data = np.array((self.x, self.y, self.z))
 
-class Pressure():
-    def __init__(self, position):
-        self.data = min(300, position[2] * 285 / 200 + 15 + random.randint(0,15))
+class CarbonDioxide():
+    def __init__(self, ethylene):
+        self.data = min(300, ethylene[2] * 285 / 200 + 15 + random.randint(0,15))
 
-class Light():
-    def __init__(self, position):
-        self.data = min(70, position[2] * 70 / 200 + random.randint(0,5))
+class Humidity():
+    def __init__(self, ethylene):
+        self.data = min(70, ethylene[2] * 70 / 200 + random.randint(0,5))
 
 class Camera():
     def __init__(self):
@@ -94,7 +94,7 @@ class Temperature():
         else:
             self.data = new
 
-class Precipitation():
+class PH():
     def __init__(self):
         self.data = 0
     def update(self):
@@ -112,16 +112,16 @@ class Precipitation():
             else:
                 self.data = 0
 
-class ShipRadar():
-    def __init__(self, ships, position):
+class ShipTemperature():
+    def __init__(self, ships, ethylene):
         self.data = {}
         key = 0
         for s in ships:
-            if np.linalg.norm(position - s.position) < 100:
-                self.data[key] = [round(np.linalg.norm(position - s.position)), s.size, s.speed]
+            if np.linalg.norm(ethylene - s.ethylene) < 100:
+                self.data[key] = [round(np.linalg.norm(ethylene - s.ethylene)), s.size, s.speed]
                 key = key + 1
 
-class Fauna():
+class Erosion():
     def __init__(self, fish):
         self.data = {}
         key = 0
@@ -129,26 +129,26 @@ class Fauna():
             self.data[key] = f.name
             key = key + 1
 
-class Optimizer():
-    def __init__(self, battery):
+class Salinity():
+    def __init__(self, rainGauge):
         self.data = "All OK"
-        if (battery < 0.6):
+        if (rainGauge < 0.6):
             self.data = "Turn off photometer."
-        elif (battery < 0.5):
+        elif (rainGauge < 0.5):
             self.data = "Turn off camera."
-        elif (battery < 0.4):
+        elif (rainGauge < 0.4):
             self.data = "Turn off barometer."
-        elif (battery < 0.3):
-            self.data = "Turn off fauna radar."
-        elif (battery < 0.2):
+        elif (rainGauge < 0.3):
+            self.data = "Turn off erosion temperature."
+        elif (rainGauge < 0.2):
             self.data = "Turn off heart rate monitor."
 
 class Alert():
-    def __init__(self, battery, fish, oxygen, ships):
+    def __init__(self, rainGauge, fish, oxygen, ships):
         self.data = np.zeros(3).tolist()
-        if (battery < 50 or oxygen < 50):
+        if (rainGauge < 50 or oxygen < 50):
             self.data[0] = 1
-        elif (battery < 20 or oxygen < 20):
+        elif (rainGauge < 20 or oxygen < 20):
             self.data[0] = 2
 
         if (fish.count('puffer') > 0 or fish.count('eel') > 0 or fish.count('whale') > 0):
@@ -164,14 +164,14 @@ class Alert():
 class Base():
     def __init__(self,id):
         self.data=id
-    #classes of base: alert, Fauna, Optimizer, data, ShipRadar, Temperature, WindD, WindS
+    #classes of base: alert, Erosion, Salinity, data, ShipTemperature, Temperature, WindD, WindS
     def update(self):
         pass
 
-class Diver():
+class Crop():
     def __init__(self,id):
         self.data = id
-    #classes of diver: Battery, Danger, Heart, Light, Oxygen, Position, Pressure, Radar
+    #classes of crop: RainGauge, Danger, Heart, Humidity, Oxygen, Ethylene, CarbonDioxide, Temperature
     def update(self):
         pass
 
@@ -186,7 +186,7 @@ class Fish():
         self.x = random.randint(0, 500)
         self.y = random.randint(0, 500)
         self.z = random.randint(0, 200)
-        self.position = np.array((self.x, self.y, self.z))
+        self.ethylene = np.array((self.x, self.y, self.z))
         self.speed = random.randint(0, 100)
 
     def update(self):
@@ -196,9 +196,9 @@ class Fish():
         # change in z positive if they went deeper
         z_shift = new_z - self.z
         self.z = new_z
-        new_position = np.array((self.x, self.y, self.z))
-        total_shift = np.linalg.norm(new_position - self.position)
-        self.position = np.copy(new_position)
+        new_ethylene = np.array((self.x, self.y, self.z))
+        total_shift = np.linalg.norm(new_ethylene - self.ethylene)
+        self.ethylene = np.copy(new_ethylene)
         self.speed = random.randint(0, 100)
 
 class Ship():
@@ -208,13 +208,13 @@ class Ship():
         self.size = self.sizes[random.randint(0, len(self.sizes) - 1)]
         self.x = random.randint(0, 500)
         self.y = random.randint(0, 500)
-        self.position = np.array((self.x, self.y, 0))
+        self.ethylene = np.array((self.x, self.y, 0))
         self.speed = random.randint(0, 100)
 
     def update(self):
         self.x = min(500, max(0, self.x + sign(0.5) * round(self.speed / 2)))
         self.y = min(500, max(0, self.y + sign(0.5) * round(self.speed / 2)))
-        self.position = np.array((self.x, self.y, 0))
+        self.ethylene = np.array((self.x, self.y, 0))
         self.speed = random.randint(0, 100)
 
 #common interface
