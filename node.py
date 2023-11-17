@@ -34,7 +34,7 @@ def assign_class(node_interface):
         elif(split_interface[length_interface-1] == 'rainGauge'):
             return Interfaces.RainGauge()
         elif(split_interface[length_interface-1] == 'temperature'):
-            return Interfaces.Temperature(fish,ethylene)
+            return Interfaces.Temperature()
         elif(split_interface[length_interface-1] == 'moisture'):
             return Interfaces.Heart()
         elif(split_interface[length_interface-1] == 'ethylene'):

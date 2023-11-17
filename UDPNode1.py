@@ -45,7 +45,7 @@ def update(interface,router,name):
         elif (interface.__class__.__name__ == 'CarbonDioxide'):
             interface = Interfaces.CarbonDioxide(aux_ethylene)
         elif (interface.__class__.__name__ == 'Temperature'):
-            interface = Interfaces.Temperature(aux_fish, aux_ethylene)
+            interface = Interfaces.Temperature()
         elif (interface.__class__.__name__ == 'ShipTemperature'):
             interface = Interfaces.ShipTemperature(aux_ships, aux_ethylene)
         elif (interface.__class__.__name__ == 'Erosion'):

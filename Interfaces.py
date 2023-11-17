@@ -19,7 +19,7 @@ class RainGauge():
         if (random.random() < 0.75):
             self.data = max(0, self.data-1)
 
-class Temperature():
+class Temperature2():
     def __init__(self, fish, ethylene):
         self.data = {}
         key = 0
