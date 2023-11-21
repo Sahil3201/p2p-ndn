@@ -136,6 +136,7 @@ def handle_packet(router, packet,socket):
                 #Send data packet to requesters
                 if interest[1] != router.name:
                     address = router.getAddress(interest[1])
+                    print(json.dumps(packet).encode(), address)
                     socket.sendto(json.dumps(packet).encode(), address)
                 inPit = True
         if inPit:

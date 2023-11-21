@@ -1,6 +1,6 @@
 import json
 
-Addresses = ["10.35.70.14", "10.35.70.45"]
+Addresses = ["10.35.70.4", "10.35.70.46"]
 
 Networks = ["crops", "soils"]
 

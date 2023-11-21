@@ -1,92 +1,92 @@
 tmux new-session -d -s Crops
-tmux new-window -n done
-tmux new-window -d -n d1humidity
-tmux new-window -d -n d1oxygen
-tmux new-window -d -n d1ethylene
-tmux new-window -d -n d1carbonDioxide
-tmux new-window -d -n d1temperature
-tmux new-window -d -n d1moisture
-tmux new-window -d -n d1rainGauge
-tmux new-window -d -n d1camera
-tmux new-window -n dtwo
-tmux new-window -d -n d2humidity
-tmux new-window -d -n d2oxygen
-tmux new-window -d -n d2ethylene
-tmux new-window -d -n d2carbonDioxide
-tmux new-window -d -n d2temperature
-tmux new-window -d -n d2moisture
-tmux new-window -d -n d2rainGauge
-tmux new-window -d -n d2camera
-tmux new-window -n dthree
-tmux new-window -d -n d3humidity
-tmux new-window -d -n d3oxygen
-tmux new-window -d -n d3ethylene
-tmux new-window -d -n d3carbonDioxide
-tmux new-window -d -n d3temperature
-tmux new-window -d -n d3moisture
-tmux new-window -d -n d3rainGauge
-tmux new-window -d -n d3camera
-tmux new-window -n dfour
-tmux new-window -d -n d4humidity
-tmux new-window -d -n d4oxygen
-tmux new-window -d -n d4ethylene
-tmux new-window -d -n d4carbonDioxide
-tmux new-window -d -n d4temperature
-tmux new-window -d -n d4moisture
-tmux new-window -d -n d4rainGauge
-tmux new-window -d -n d4camera
-tmux new-window -n dfive
-tmux new-window -d -n d5humidity
-tmux new-window -d -n d5oxygen
-tmux new-window -d -n d5ethylene
-tmux new-window -d -n d5carbonDioxide
-tmux new-window -d -n d5temperature
-tmux new-window -d -n d5moisture
-tmux new-window -d -n d5rainGauge
-tmux new-window -d -n d5camera
+tmux new-window -n cone
+tmux new-window -d -n c1humidity
+tmux new-window -d -n c1oxygen
+tmux new-window -d -n c1ethylene
+tmux new-window -d -n c1carbonDioxide
+tmux new-window -d -n c1temperature
+tmux new-window -d -n c1moisture
+tmux new-window -d -n c1rainGauge
+tmux new-window -d -n c1camera
+tmux new-window -n ctwo
+tmux new-window -d -n c2humidity
+tmux new-window -d -n c2oxygen
+tmux new-window -d -n c2ethylene
+tmux new-window -d -n c2carbonDioxide
+tmux new-window -d -n c2temperature
+tmux new-window -d -n c2moisture
+tmux new-window -d -n c2rainGauge
+tmux new-window -d -n c2camera
+tmux new-window -n cthree
+tmux new-window -d -n c3humidity
+tmux new-window -d -n c3oxygen
+tmux new-window -d -n c3ethylene
+tmux new-window -d -n c3carbonDioxide
+tmux new-window -d -n c3temperature
+tmux new-window -d -n c3moisture
+tmux new-window -d -n c3rainGauge
+tmux new-window -d -n c3camera
+tmux new-window -n cfour
+tmux new-window -d -n c4humidity
+tmux new-window -d -n c4oxygen
+tmux new-window -d -n c4ethylene
+tmux new-window -d -n c4carbonDioxide
+tmux new-window -d -n c4temperature
+tmux new-window -d -n c4moisture
+tmux new-window -d -n c4rainGauge
+tmux new-window -d -n c4camera
+tmux new-window -n cfive
+tmux new-window -d -n c5humidity
+tmux new-window -d -n c5oxygen
+tmux new-window -d -n c5ethylene
+tmux new-window -d -n c5carbonDioxide
+tmux new-window -d -n c5temperature
+tmux new-window -d -n c5moisture
+tmux new-window -d -n c5rainGauge
+tmux new-window -d -n c5camera
 tmux send-keys -t Crops:bash "echo Base Control"
-tmux send-keys -t Crops:done "python3 node.py --name /crops/crop1" Enter
-tmux send-keys -t Crops:d1humidity "python3 node.py --name /crops/crop1/humidity" Enter
-tmux send-keys -t Crops:d1oxygen "python3 node.py --name /crops/crop1/oxygen" Enter
-tmux send-keys -t Crops:d1ethylene "python3 node.py --name /crops/crop1/ethylene" Enter
-tmux send-keys -t Crops:d1carbonDioxide "python3 node.py --name /crops/crop1/carbonDioxide" Enter
-tmux send-keys -t Crops:d1temperature "python3 node.py --name /crops/crop1/temperature" Enter
-tmux send-keys -t Crops:d1moisture "python3 node.py --name /crops/crop1/moisture" Enter
-tmux send-keys -t Crops:d1rainGauge "python3 node.py --name /crops/crop1/rainGauge" Enter
-tmux send-keys -t Crops:d1camera "python3 node.py --name /crops/crop1/camera" Enter
-tmux send-keys -t Crops:dtwo "python3 node.py --name /crops/crop2" Enter
-tmux send-keys -t Crops:d2humidity "python3 node.py --name /crops/crop2/humidity" Enter
-tmux send-keys -t Crops:d2oxygen "python3 node.py --name /crops/crop2/oxygen" Enter
-tmux send-keys -t Crops:d2ethylene "python3 node.py --name /crops/crop2/ethylene" Enter
-tmux send-keys -t Crops:d2carbonDioxide "python3 node.py --name /crops/crop2/carbonDioxide" Enter
-tmux send-keys -t Crops:d2temperature "python3 node.py --name /crops/crop2/temperature" Enter
-tmux send-keys -t Crops:d2moisture "python3 node.py --name /crops/crop2/moisture" Enter
-tmux send-keys -t Crops:d2rainGauge "python3 node.py --name /crops/crop2/rainGauge" Enter
-tmux send-keys -t Crops:d2camera "python3 node.py --name /crops/crop2/camera" Enter
-tmux send-keys -t Crops:dthree "python3 node.py --name /crops/crop3" Enter
-tmux send-keys -t Crops:d3humidity "python3 node.py --name /crops/crop3/humidity" Enter
-tmux send-keys -t Crops:d3oxygen "python3 node.py --name /crops/crop3/oxygen" Enter
-tmux send-keys -t Crops:d3ethylene "python3 node.py --name /crops/crop3/ethylene" Enter
-tmux send-keys -t Crops:d3carbonDioxide "python3 node.py --name /crops/crop3/carbonDioxide" Enter
-tmux send-keys -t Crops:d3temperature "python3 node.py --name /crops/crop3/temperature" Enter
-tmux send-keys -t Crops:d3moisture "python3 node.py --name /crops/crop3/moisture" Enter
-tmux send-keys -t Crops:d3rainGauge "python3 node.py --name /crops/crop3/rainGauge" Enter
-tmux send-keys -t Crops:d3camera "python3 node.py --name /crops/crop3/camera" Enter
-tmux send-keys -t Crops:dfour "python3 node.py --name /crops/crop4" Enter
-tmux send-keys -t Crops:d4humidity "python3 node.py --name /crops/crop4/humidity" Enter
-tmux send-keys -t Crops:d4oxygen "python3 node.py --name /crops/crop4/oxygen" Enter
-tmux send-keys -t Crops:d4ethylene "python3 node.py --name /crops/crop4/ethylene" Enter
-tmux send-keys -t Crops:d4carbonDioxide "python3 node.py --name /crops/crop4/carbonDioxide" Enter
-tmux send-keys -t Crops:d4temperature "python3 node.py --name /crops/crop4/temperature" Enter
-tmux send-keys -t Crops:d4moisture "python3 node.py --name /crops/crop4/moisture" Enter
-tmux send-keys -t Crops:d4rainGauge "python3 node.py --name /crops/crop4/rainGauge" Enter
-tmux send-keys -t Crops:d4camera "python3 node.py --name /crops/crop4/camera" Enter
-tmux send-keys -t Crops:dfive "python3 node.py --name /crops/crop5" Enter
-tmux send-keys -t Crops:d5humidity "python3 node.py --name /crops/crop5/humidity" Enter
-tmux send-keys -t Crops:d5oxygen "python3 node.py --name /crops/crop5/oxygen" Enter
-tmux send-keys -t Crops:d5ethylene "python3 node.py --name /crops/crop5/ethylene" Enter
-tmux send-keys -t Crops:d5carbonDioxide "python3 node.py --name /crops/crop5/carbonDioxide" Enter
-tmux send-keys -t Crops:d5temperature "python3 node.py --name /crops/crop5/temperature" Enter
-tmux send-keys -t Crops:d5moisture "python3 node.py --name /crops/crop5/moisture" Enter
-tmux send-keys -t Crops:d5rainGauge "python3 node.py --name /crops/crop5/rainGauge" Enter
-tmux send-keys -t Crops:d5camera "python3 node.py --name /crops/crop5/camera" Enter
+tmux send-keys -t Crops:cone "python3 node.py --name /crops/crop1" Enter
+tmux send-keys -t Crops:c1humidity "python3 node.py --name /crops/crop1/humidity" Enter
+tmux send-keys -t Crops:c1oxygen "python3 node.py --name /crops/crop1/oxygen" Enter
+tmux send-keys -t Crops:c1ethylene "python3 node.py --name /crops/crop1/ethylene" Enter
+tmux send-keys -t Crops:c1carbonDioxide "python3 node.py --name /crops/crop1/carbonDioxide" Enter
+tmux send-keys -t Crops:c1temperature "python3 node.py --name /crops/crop1/temperature" Enter
+tmux send-keys -t Crops:c1moisture "python3 node.py --name /crops/crop1/moisture" Enter
+tmux send-keys -t Crops:c1rainGauge "python3 node.py --name /crops/crop1/rainGauge" Enter
+tmux send-keys -t Crops:c1camera "python3 node.py --name /crops/crop1/camera" Enter
+tmux send-keys -t Crops:ctwo "python3 node.py --name /crops/crop2" Enter
+tmux send-keys -t Crops:c2humidity "python3 node.py --name /crops/crop2/humidity" Enter
+tmux send-keys -t Crops:c2oxygen "python3 node.py --name /crops/crop2/oxygen" Enter
+tmux send-keys -t Crops:c2ethylene "python3 node.py --name /crops/crop2/ethylene" Enter
+tmux send-keys -t Crops:c2carbonDioxide "python3 node.py --name /crops/crop2/carbonDioxide" Enter
+tmux send-keys -t Crops:c2temperature "python3 node.py --name /crops/crop2/temperature" Enter
+tmux send-keys -t Crops:c2moisture "python3 node.py --name /crops/crop2/moisture" Enter
+tmux send-keys -t Crops:c2rainGauge "python3 node.py --name /crops/crop2/rainGauge" Enter
+tmux send-keys -t Crops:c2camera "python3 node.py --name /crops/crop2/camera" Enter
+tmux send-keys -t Crops:cthree "python3 node.py --name /crops/crop3" Enter
+tmux send-keys -t Crops:c3humidity "python3 node.py --name /crops/crop3/humidity" Enter
+tmux send-keys -t Crops:c3oxygen "python3 node.py --name /crops/crop3/oxygen" Enter
+tmux send-keys -t Crops:c3ethylene "python3 node.py --name /crops/crop3/ethylene" Enter
+tmux send-keys -t Crops:c3carbonDioxide "python3 node.py --name /crops/crop3/carbonDioxide" Enter
+tmux send-keys -t Crops:c3temperature "python3 node.py --name /crops/crop3/temperature" Enter
+tmux send-keys -t Crops:c3moisture "python3 node.py --name /crops/crop3/moisture" Enter
+tmux send-keys -t Crops:c3rainGauge "python3 node.py --name /crops/crop3/rainGauge" Enter
+tmux send-keys -t Crops:c3camera "python3 node.py --name /crops/crop3/camera" Enter
+tmux send-keys -t Crops:cfour "python3 node.py --name /crops/crop4" Enter
+tmux send-keys -t Crops:c4humidity "python3 node.py --name /crops/crop4/humidity" Enter
+tmux send-keys -t Crops:c4oxygen "python3 node.py --name /crops/crop4/oxygen" Enter
+tmux send-keys -t Crops:c4ethylene "python3 node.py --name /crops/crop4/ethylene" Enter
+tmux send-keys -t Crops:c4carbonDioxide "python3 node.py --name /crops/crop4/carbonDioxide" Enter
+tmux send-keys -t Crops:c4temperature "python3 node.py --name /crops/crop4/temperature" Enter
+tmux send-keys -t Crops:c4moisture "python3 node.py --name /crops/crop4/moisture" Enter
+tmux send-keys -t Crops:c4rainGauge "python3 node.py --name /crops/crop4/rainGauge" Enter
+tmux send-keys -t Crops:c4camera "python3 node.py --name /crops/crop4/camera" Enter
+tmux send-keys -t Crops:cfive "python3 node.py --name /crops/crop5" Enter
+tmux send-keys -t Crops:c5humidity "python3 node.py --name /crops/crop5/humidity" Enter
+tmux send-keys -t Crops:c5oxygen "python3 node.py --name /crops/crop5/oxygen" Enter
+tmux send-keys -t Crops:c5ethylene "python3 node.py --name /crops/crop5/ethylene" Enter
+tmux send-keys -t Crops:c5carbonDioxide "python3 node.py --name /crops/crop5/carbonDioxide" Enter
+tmux send-keys -t Crops:c5temperature "python3 node.py --name /crops/crop5/temperature" Enter
+tmux send-keys -t Crops:c5moisture "python3 node.py --name /crops/crop5/moisture" Enter
+tmux send-keys -t Crops:c5rainGauge "python3 node.py --name /crops/crop5/rainGauge" Enter
+tmux send-keys -t Crops:c5camera "python3 node.py --name /crops/crop5/camera" Enter
