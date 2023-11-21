@@ -903,7 +903,6 @@
             },
             {
                 "neighbors": [
-                    "/soils/soil3",
                     "/soils/soil4",
                     "/crops/crop1",
                     "/crops/crop2"
@@ -1033,7 +1032,6 @@
             {
                 "neighbors": [
                     "/soils/soil3",
-                    "/soils/soil4",
                     "/crops/crop1",
                     "/crops/crop2"
                 ]

@@ -2,7 +2,6 @@ import socket
 import threading
 import random
 import json
-import Interfaces
 import time
 
 bufferSize  = 1024
@@ -27,33 +26,7 @@ def setup_sockets(listen_port,send_port):
 ########## Update ##############
 def update(interface,router,name):
     while True:
-        #auxiliaries for the classes that need it
-        aux_ethylene = [random.randint(0,500),random.randint(0,500),random.randint(0,200)]
-        aux_oxygen = random.randint(0,100)
-        aux_rainGauge = random.randint(0,100)
-        aux_fish = []
-        for i in range (random.randint(0,300)):
-            aux_fish.append(Interfaces.Fish())
-        aux_ships = []
-        for i in range (random.randint(0,50)):
-            aux_ships.append(Interfaces.Ship())
-        #updating every 10 seconds
-        if (interface.__class__.__name__ in ['Oxygen', 'RainGauge', 'Heart', 'Ethylene', 'Camera', 'WindS', 'WindD', 'Temperature', 'PH']):
-            interface.update()
-        elif (interface.__class__.__name__ == 'Humidity'):
-            interface = Interfaces.Humidity(aux_ethylene)
-        elif (interface.__class__.__name__ == 'CarbonDioxide'):
-            interface = Interfaces.CarbonDioxide(aux_ethylene)
-        elif (interface.__class__.__name__ == 'Temperature'):
-            interface = Interfaces.Temperature()
-        elif (interface.__class__.__name__ == 'ShipTemperature'):
-            interface = Interfaces.ShipTemperature(aux_ships, aux_ethylene)
-        elif (interface.__class__.__name__ == 'Erosion'):
-            interface = Interfaces.Erosion(aux_fish)
-        elif (interface.__class__.__name__ == 'Salinity'):
-            interface = Interfaces.Salinity(aux_rainGauge)
-        elif (interface.__class__.__name__ == 'Alert'):
-            interface = Interfaces.Alert(aux_rainGauge, aux_fish, aux_oxygen, aux_ships)
+        interface.update()
         #Update content store with data
         router.setCS(name,interface.data,time.time())
         time.sleep(10)
@@ -68,7 +41,7 @@ def outbound(socket,router,lock,interface):
         lock.acquire()
         #Send to some neighbor given longest prefix protocol or FIB
         neighbor = router.longestPrefix(interest)
-        packet = (interest, interface)
+        packet = (interest, interface) # interest packet
         router.setPit(interest,interface)
         print("Sending: ",json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         socket.sendto(json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
@@ -91,6 +64,7 @@ def handle_packet(router, packet,socket):
     print("HANDLING PACKET")
     packet = json.loads(packet.decode())
     name = packet[0]
+    print(router)
     #Interest packet
     if len(packet) == 2:
         interface = packet[1]
@@ -155,6 +129,7 @@ def inbound(socket,name,lock,router):
     while(True):
         print("running inbound")
         bytesAddressPair = socket.recvfrom(bufferSize)
+        print(f"\nRECEIVED DATA: {bytesAddressPair}")
         lock.acquire()
         message = bytesAddressPair[0]
         handle_packet(router,message,socket)
