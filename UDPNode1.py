@@ -35,14 +35,14 @@ def update(interface,router,name):
 
 ########## Outbound #############
 #Send interest packet
-def outbound(socket,router,lock,interface):
+def outbound(socket,router,lock, addr_port):
     while True:
         interest = input('Ask the network for information: ') 
         lock.acquire()
         #Send to some neighbor given longest prefix protocol or FIB
         neighbor = router.longestPrefix(interest)
-        packet = (interest, interface) # interest packet
-        router.setPit(interest,interface)
+        packet = (interest, addr_port) # interest packet
+        router.setPit(interest, addr_port)
         print("Sending: ",json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         socket.sendto(json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         lock.release()
@@ -67,19 +67,18 @@ def handle_packet(router, packet,socket):
     print(router)
     #Interest packet
     if len(packet) == 2:
-        interface = packet[1]
+        addr_port = packet[1]
         print("Interest Packet Received!")
         if name in router.getCS() and fresh(name,router):
             print("I have the Data!")
             #Produce data packet name : data : freshness
-            address = router.getAddress(interface)
-            packet = (name,router.getCS()[name],0)
-            #print("Forward to " + interface)
-            socket.sendto(json.dumps(packet).encode(), address)
+            packet = (name,router.getCS()[name],0) 
+            print("Forward to " + str(addr_port))
+            socket.sendto(json.dumps(packet).encode(), tuple(addr_port))
             return
         elif packet not in router.getPit():
             print("I don't have the Data, updating PIT!")
-            router.setPit(name,interface)
+            router.setPit(name, addr_port)
             print("PIT ", router.getPit())
             #Forward Interest based on longest prefix
             if router.getMultiRequest() ==  2:
@@ -93,8 +92,8 @@ def handle_packet(router, packet,socket):
                 next_node = router.longestPrefix(name)
                 router.updateMultiRequest()
             print("Forwarding to ", next_node[len(next_node)-1]) 
-            packet = (name, router.getLocation()[0])
-            socket.sendto(json.dumps(packet).encode(),(next_node[len(next_node)-1][1],next_node[len(next_node)-1][2]))
+            packet = (name, (router.getLocation()[1], router.getLocation()[2]))
+            socket.sendto(json.dumps(packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
             return
 
     #Data packet
@@ -103,15 +102,16 @@ def handle_packet(router, packet,socket):
         data = packet[1]
         inPit = False
         #Remove elements in PIT which contain interest
-        for interest in router.getPit(): 
+        for interest in router.getPit():
             if interest[0] == name:
                 print("Satisfying interest table")
                 router.popPit(interest[0],interest[1])
+                print('*'*30,f"\n\t\tDATA IS: {data[0]}\n\n", '*'*30)
                 #Send data packet to requesters
                 if interest[1] != router.name:
-                    address = router.getAddress(interest[1])
+                    address = interest[1]
                     print(json.dumps(packet).encode(), address)
-                    socket.sendto(json.dumps(packet).encode(), address)
+                    socket.sendto(json.dumps(packet).encode(), tuple(address))
                 inPit = True
         if inPit:
             print("Updating Content store")
@@ -160,7 +160,7 @@ class p2p_node():
         s_inbound,s_outbound = setup_sockets(self.listen_port,self.send_port)
         # creating thread
         t1 = threading.Thread(target=inbound, args=(s_inbound,self.name,self.lock,self.router))
-        t2 = threading.Thread(target=outbound, args=(s_outbound,self.router,self.lock,self.name))
+        t2 = threading.Thread(target=outbound, args=(s_outbound,self.router,self.lock, (self.address, self.listen_port)))
         t3 = threading.Thread(target=update, args=(self.interface,self.router,self.name))
 
         # starting thread 1

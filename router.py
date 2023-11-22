@@ -5,7 +5,7 @@ class Router:
         self.multi_request = 0
         self.name = name  # device name
         self.cs = dict()  # name: data: freshness # content store
-        self.pit = list(tuple())  # name, interface # Pending interest table
+        self.pit = list(tuple())  # name, interest_sender_address (addr, listen_port) # Pending interest table
         self.fib = list(tuple())  # prefix, ip address, ongoing interface # Forwarding information base
         self.location = list(tuple()) #address, listen port, send port # stores its own location in the network
 
@@ -64,11 +64,12 @@ class Router:
         return self.pit
 
     # record the incoming interface of Interest Packet
-    def setPit(self, name, interface):  # incoming interface
-        self.pit.append((name, interface))
+    def setPit(self, name, interest_sender_address):  # incoming interface
+        if (name, interest_sender_address) not in self.pit:
+            self.pit.append((name, interest_sender_address))
 
-    def popPit(self,name,interface):
-        self.pit.remove((name,interface))
+    def popPit(self,name, interest_sender_address):
+        self.pit.remove((name, interest_sender_address))
 
     def getFib(self):
         return self.fib
@@ -80,9 +81,9 @@ class Router:
         return self.location
     
     def getAddress(self,name):
-        print("name:", name)
+        # print("name:", name)
         for address in self.fib:
-            print("address:", address)
+            # print("address:", address)
             if name == address[0]:
                 return(address[1],address[2])
 
