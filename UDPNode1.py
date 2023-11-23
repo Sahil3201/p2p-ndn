@@ -32,7 +32,6 @@ def update(interface,router,name):
         time.sleep(10)
 
 
-
 ########## Outbound #############
 #Send interest packet
 def outbound(socket,router,lock, addr_port):

@@ -1,4 +1,4 @@
-import json
+import json, random
 
 Addresses = ["10.35.70.4", "10.35.70.46"]
 
@@ -14,7 +14,6 @@ CropSensors = ["humidity", "oxygen", "ethylene", "carbonDioxide", "temperature",
 SoilSensors = ["moisture", "erosion", "salinity", "winds", "organicMatter", "temperature", "pH", "alert"]
 SoilNeighborList = [["/soils/soil3","/soils/soil4","/crops/crop1","/crops/crop2"], ["/soils/soil3","/crops/crop2","/crops/crop5"],["/soils/soil1","/soils/soil2","/soils/soil4","/soils/soil5"], ["/soils/soil3"]]
 
-json_array = []
 
 listen_port = 33001
 send_port = 33002
@@ -44,4 +43,3 @@ for soil in Soils:
 
 with open('interfaces.json', 'w') as f:
   json.dump(json_array, f, indent=4)
-
