@@ -91,6 +91,7 @@ def handle_packet(router, packet,socket):
             else:
                 next_node = router.longestPrefix(name)
                 router.updateMultiRequest()
+            print(next_node)
             print("Forwarding to ", next_node[len(next_node)-1]) 
             packet = (name, (router.getLocation()[1], router.getLocation()[2]))
             socket.sendto(json.dumps(packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
