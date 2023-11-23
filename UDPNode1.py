@@ -81,7 +81,8 @@ def handle_packet(router, packet,socket):
             router.setPit(name, addr_port)
             print("PIT ", router.getPit())
             #Forward Interest based on longest prefix
-            if router.getMultiRequest() ==  2:
+            next_node = router.longestPrefix(name)
+            if next_node==[] or router.getMultiRequest()==2:
                 next_nodes = []
                 for node in router.getFib():
                     if len(node[0].split("/")) != 4:
