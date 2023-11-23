@@ -1,77 +1,44 @@
 import json, random
 
-addresses = ["10.35.70.4", "10.35.70.46"]
+Addresses = ["10.35.70.4", "10.35.70.46"]
 
-networks = ["weather", "soil", 'irrigation', 'livestock', 'crop']
+Networks = ["crops", "soils"]
 
-sensorList = [['temperature', 'humidity', 'wind_speed', 'rain_gauge', 'solar_radiation', 'evapotranspiration', 'atmospheric_gas', 'barometric_pressure'], # weatherSensorList
-['moisture', 'erosion', 'salinity', 'texture', 'temperature', 'organic_matter_content', 'pH'], # soilSensorList
-['moisture', 'flow_rate', 'pressure', 'quality', 'pump_status', 'pH', 'evapotranspiration', 'turbidity'], # irrigationSensorList
-['temperature', 'RFID_Tag', 'heart_rate_monitor', 'milk_production', 'consumption_meter', 'proximity_meters', 'feed_intake', 'activity_monitor'], # livestockSensorList
-['temperature', 'humidity', 'oxygen_level', 'ethylene_gas', 'carbon_dioxide', 'moisture_content', 'rain_gauge']] # cropSensorList
+Crops = ["crop1","crop2","crop3","crop4","crop5"]
+CropNeighborList = [["/crops/crop3","/crops/crop4","/soils/soil1"], ["/crops/crop4","/crops/crop5","/soils/soil1","/soils/soil4"], ["/crops/crop1"], ["/crops/crop1","/crops/crop2"], ["/crops/crop2","/soils/soil2"]]
 
-nodeNeighborList = ["weather","soil","irrigation","livestock","crop"]
+Soils = ["soil1", "soil2", "soil3","soil4","soil5"]
 
-json_array = []
+CropSensors = ["humidity", "oxygen", "ethylene", "carbonDioxide", "temperature", "moisture", "rainGauge", "camera"]
 
-port = 33001
-
-def get_addr(sensor_no=0):
-    global port
-    port = port + 2
-    return {
-                "listen port": port,
-                "send port": port+1,
-                "address": addresses[sensor_no//3]
-            }
-
-def getNodeAddr(nodeName):
-    return f'/{nodeName}s/{nodeName}1'
+SoilSensors = ["moisture", "erosion", "salinity", "winds", "organicMatter", "temperature", "pH", "alert"]
+SoilNeighborList = [["/soils/soil3","/soils/soil4","/crops/crop1","/crops/crop2"], ["/soils/soil3","/crops/crop2","/crops/crop5"],["/soils/soil1","/soils/soil2","/soils/soil4","/soils/soil5"], ["/soils/soil3"]]
 
 
-nodeNames = [getNodeAddr(nodeNeighborList[i]) for i in range(len(nodeNeighborList))]
+listen_port = 33001
+send_port = 33002
+neighbor_itertator = 0
+for crop in Crops:
+    crop_name = "/" + Networks[0] + "/" + crop
+    json_array.append({crop_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : CropNeighborList[neighbor_itertator]}]})
+    listen_port += 2
+    send_port += 2
+    neighbor_itertator +=1
+    for sensor in CropSensors:
+        json_array.append({"/" + Networks[0] + "/" + crop + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : [crop_name]}]})
+        listen_port += 2
+        send_port += 2
 
-
-
-for i in range(len(nodeNeighborList)):
-    nodeName = getNodeAddr(nodeNeighborList[i])
-    json_array.append({nodeName : [
-        get_addr(i), 
-        {
-                "neighbors": [getNodeAddr(random.choice(nodeNeighborList)) for _ in range(random.randint(1,3))]
-            }
-            ]})
-    for j in range(len(sensorList[i])):
-        json_array.append({f'{nodeName}/{sensorList[i][j]}' : [
-        get_addr(i), 
-        {
-                "neighbors": [nodeName]
-            }
-            ]})
-
-
-# for diver in Divers:
-#     diver_name = "/" + Networks[0] + "/" + diver
-#     json_array.append({diver_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : DiverNeighborList[neighbor_itertator]}]})
-#     listen_port += 2
-#     send_port += 2
-#     neighbor_itertator +=1
-#     for sensor in DiverSensors:
-#         json_array.append({"/" + Networks[0] + "/" + diver + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[0]},{"neighbors" : [diver_name]}]})
-#         listen_port += 2
-#         send_port += 2
-
-# neighbor_itertator = 0
-# for scientist in Scientists:
-#     scientist_name = "/" + Networks[1] + "/" + scientist
-#     json_array.append({scientist_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : ScientistNeighborList[neighbor_itertator]}]})
-#     listen_port += 2
-#     send_port += 2
-#     for sensor in ScientistSensors:
-#         json_array.append({"/" + Networks[1] + "/" + scientist + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : [scientist_name]}]})
-#         listen_port += 2
-#         send_port += 2
-
+neighbor_itertator = 0
+for soil in Soils:
+    soil_name = "/" + Networks[1] + "/" + soil
+    json_array.append({soil_name : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : SoilNeighborList[neighbor_itertator]}]})
+    listen_port += 2
+    send_port += 2
+    for sensor in SoilSensors:
+        json_array.append({"/" + Networks[1] + "/" + soil + "/" + sensor : [{"listen port": listen_port,"send port": send_port,"address": Addresses[1]},{"neighbors" : [soil_name]}]})
+        listen_port += 2
+        send_port += 2
 
 
 with open('interfaces.json', 'w') as f:

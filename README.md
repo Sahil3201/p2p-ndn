@@ -5,10 +5,10 @@ Group 4 NDN run instructions.<br />
 The following instructions is to run our two name defined networks on independent Raspberry Pi’s.<br />
 
 On Pi 1 Cd into the project folder.<br />
-Run the command:  source .tmux/ndn-divers <br />
-This starts the diver network.\newline
+Run the command:  source .tmux/ndn-crops <br />
+This starts the crop network.\newline
 On Pi 2 Cd into the project folder. <br />
-Run the command: source .tmux/ndn-scientists<br />
+Run the command: source .tmux/ndn-soils<br />
 The follow can be done on either or both Pi’s<br />
 Run the command: tmux attach\newline
 This allows you to interface with the nodes in the network.<br />

@@ -5,28 +5,23 @@ class Router:
         self.multi_request = 0
         self.name = name  # device name
         self.cs = dict()  # name: data: freshness # content store
-        self.pit = list(tuple())  # name # Pending interest table
+        self.pit = list(tuple())  # name, interest_sender_address (addr, listen_port) # Pending interest table
         self.fib = list(tuple())  # prefix, ip address, ongoing interface # Forwarding information base
-        self.location = list(tuple()) #name, address, listen port, send port
+        self.location = list(tuple()) #address, listen port, send port # stores its own location in the network
 
         with open("interfaces.json", 'r') as load_f:
             load_dict = json.load(load_f)
-        #Set location
+
+        #Set location and get the current device's neighbours
+        neighbours_list = list()
         for i in range(len(load_dict)):
             if(name == list(load_dict[i].keys())[0]):
                 details = load_dict[i][name]
-                self.setLocation(name,details[0]["address"], details[0]["listen port"],
+                self.setLocation(name, details[0]["address"], details[0]["listen port"],
                                   details[0]["send port"])
-        # get the current device's neighbours
-        # print(self.name)
-        neighbours_list = list()
-        for i in range(len(load_dict)):
-            device_name = list(load_dict[i].keys())[0]
-            # print(device_name)
-            if device_name == self.name:
-                neighbours_dict = load_dict[i][device_name][1]  # neighbours dictionary
+                neighbours_dict = load_dict[i][name][1]  # neighbours dictionary
                 neighbours_list = neighbours_dict[list(neighbours_dict.keys())[0]]  # neighbours list
-                # print(neighbours_list)
+                break
 
         # add neighbours into the current fib
         for neighbour_name in neighbours_list:
@@ -47,6 +42,13 @@ class Router:
                     listen_port = list(sensor_list.values())[0]
                     addr = list(sensor_list.values())[2]
                     self.setFib(sensor_name, addr, listen_port)
+        print(self)
+
+    def __str__(self):
+        return '\n'+'*'*5 + f'\nPrinting router for node {self.name}\ncontent store: '+ str(self.cs) \
+        +f'\npit table: '+str(self.pit) \
+        +f'\nfib table: '+str(self.fib) \
+        +'\n'+'*'*5 + '\n'
 
     def getName(self):
         return self.name
@@ -62,11 +64,12 @@ class Router:
         return self.pit
 
     # record the incoming interface of Interest Packet
-    def setPit(self, name, interface):  # incoming interface
-        self.pit.append((name, interface))
+    def setPit(self, name, interest_sender_address):  # incoming interface
+        if (name, interest_sender_address) not in self.pit:
+            self.pit.append((name, interest_sender_address))
 
-    def popPit(self,name,interface):
-        self.pit.remove((name,interface))
+    def popPit(self,name, interest_sender_address):
+        self.pit.remove((name, interest_sender_address))
 
     def getFib(self):
         return self.fib
@@ -78,8 +81,9 @@ class Router:
         return self.location
     
     def getAddress(self,name):
+        # print("name:", name)
         for address in self.fib:
-            print(address)
+            # print("address:", address)
             if name == address[0]:
                 return(address[1],address[2])
 
@@ -106,7 +110,7 @@ class Router:
         # split the url with '/'
         packet_len = len(str_packet.split('/'))
         # print(str_packet)
-        print("in logestPrefix- self.fib: ", self.fib)
+        print("in logestPrefix- router: ", str(self))
 
         # match how many strings between the packet name and fib
         for k in range(len(self.fib)):
@@ -123,25 +127,21 @@ class Router:
             # set the largest level if match completely
             if str_packet == self.fib[k][0]:
                 loop_len = 9999
-                print(0)
-                print(self.fib[k])
+                # print(0)
+                # print(self.fib[k])
                 return [list(self.fib[k])]
             # If matches more than one string, it is added to the dictionary
             if prefix_len > 1:
                 match_fib[self.fib[k][0]] = loop_len
-        print("match_fib: ", match_fib)
+        # print("match_fib: ", match_fib)
         # rank the dictionary
         resorted = sorted(match_fib.items(), key=lambda x: x[1], reverse=True)
-        print("resorted: ", resorted)
+        # print("resorted: ", resorted)
         # return the data has the same format with fib table
         resorted_fib = list(tuple())
         for i in range(len(resorted)):
             for k in self.fib:
                 if (resorted[i][0] == k[0]) & (len(k[0].split('/')) != 4):
                     resorted_fib.append(k)
-        print("resorted_fib:", resorted_fib)
+        # print("resorted_fib:", resorted_fib)
         return resorted_fib
-
-
-
-   

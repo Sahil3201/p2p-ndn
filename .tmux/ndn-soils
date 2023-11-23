@@ -1,0 +1,92 @@
+tmux new-session -d -s Soils
+tmux new-window -n sone
+tmux new-window -d -n s1winds
+tmux new-window -d -n s1organicMatter
+tmux new-window -d -n s1temperature
+tmux new-window -d -n s1pH
+tmux new-window -d -n s1moisture
+tmux new-window -d -n s1erosion
+tmux new-window -d -n s1salinity
+tmux new-window -d -n s1alert
+tmux new-window -n stwo
+tmux new-window -d -n s2winds
+tmux new-window -d -n s2organicMatter
+tmux new-window -d -n s2temperature
+tmux new-window -d -n s2pH
+tmux new-window -d -n s2moisture
+tmux new-window -d -n s2erosion
+tmux new-window -d -n s2salinity
+tmux new-window -d -n s2alert
+tmux new-window -n sthree
+tmux new-window -d -n s3winds
+tmux new-window -d -n s3organicMatter
+tmux new-window -d -n s3temperature
+tmux new-window -d -n s3pH
+tmux new-window -d -n s3moisture
+tmux new-window -d -n s3erosion
+tmux new-window -d -n s3salinity
+tmux new-window -d -n s3alert
+tmux new-window -n sfour
+tmux new-window -d -n s4winds
+tmux new-window -d -n s4organicMatter
+tmux new-window -d -n s4temperature
+tmux new-window -d -n s4pH
+tmux new-window -d -n s4moisture
+tmux new-window -d -n s4erosion
+tmux new-window -d -n s4salinity
+tmux new-window -d -n s4alert
+tmux new-window -n sfive
+tmux new-window -d -n s5winds
+tmux new-window -d -n s5organicMatter
+tmux new-window -d -n s5temperature
+tmux new-window -d -n s5pH
+tmux new-window -d -n s5moisture
+tmux new-window -d -n s5erosion
+tmux new-window -d -n s5salinity
+tmux new-window -d -n s5alert
+tmux send-keys -t Soils:bash "echo Base Control" Enter
+tmux send-keys -t Soils:sone "python3 node.py --name /soils/soil1" Enter
+tmux send-keys -t Soils:s1winds "python3 node.py --name /soils/soil1/winds" Enter
+tmux send-keys -t Soils:s1organicMatter "python3 node.py --name /soils/soil1/organicMatter" Enter
+tmux send-keys -t Soils:s1temperature "python3 node.py --name /soils/soil1/temperature" Enter
+tmux send-keys -t Soils:s1pH "python3 node.py --name /soils/soil1/pH" Enter
+tmux send-keys -t Soils:s1moisture "python3 node.py --name /soils/soil1/moisture" Enter
+tmux send-keys -t Soils:s1erosion "python3 node.py --name /soils/soil1/erosion" Enter
+tmux send-keys -t Soils:s1salinity "python3 node.py --name /soils/soil1/salinity" Enter
+tmux send-keys -t Soils:s1alert "python3 node.py --name /soils/soil1/alert" Enter
+tmux send-keys -t Soils:stwo "python3 node.py --name /soils/soil2" Enter
+tmux send-keys -t Soils:s2winds "python3 node.py --name /soils/soil2/winds" Enter
+tmux send-keys -t Soils:s2organicMatter "python3 node.py --name /soils/soil2/organicMatter" Enter
+tmux send-keys -t Soils:s2temperature "python3 node.py --name /soils/soil2/temperature" Enter
+tmux send-keys -t Soils:s2pH "python3 node.py --name /soils/soil2/pH" Enter
+tmux send-keys -t Soils:s2moisture "python3 node.py --name /soils/soil2/moisture" Enter
+tmux send-keys -t Soils:s2erosion "python3 node.py --name /soils/soil2/erosion" Enter
+tmux send-keys -t Soils:s2salinity "python3 node.py --name /soils/soil2/salinity" Enter
+tmux send-keys -t Soils:s2alert "python3 node.py --name /soils/soil2/alert" Enter
+tmux send-keys -t Soils:sthree "python3 node.py --name /soils/soil3" Enter
+tmux send-keys -t Soils:s3winds "python3 node.py --name /soils/soil3/winds" Enter
+tmux send-keys -t Soils:s3organicMatter "python3 node.py --name /soils/soil3/organicMatter" Enter
+tmux send-keys -t Soils:s3temperature "python3 node.py --name /soils/soil3/temperature" Enter
+tmux send-keys -t Soils:s3pH "python3 node.py --name /soils/soil3/pH" Enter
+tmux send-keys -t Soils:s3moisture "python3 node.py --name /soils/soil3/moisture" Enter
+tmux send-keys -t Soils:s3erosion "python3 node.py --name /soils/soil3/erosion" Enter
+tmux send-keys -t Soils:s3salinity "python3 node.py --name /soils/soil3/salinity" Enter
+tmux send-keys -t Soils:s3alert "python3 node.py --name /soils/soil3/alert" Enter
+tmux send-keys -t Soils:sfour "python3 node.py --name /soils/soil4" Enter
+tmux send-keys -t Soils:s4winds "python3 node.py --name /soils/soil4/winds" Enter
+tmux send-keys -t Soils:s4organicMatter "python3 node.py --name /soils/soil4/organicMatter" Enter
+tmux send-keys -t Soils:s4temperature "python3 node.py --name /soils/soil4/temperature" Enter
+tmux send-keys -t Soils:s4pH "python3 node.py --name /soils/soil4/pH" Enter
+tmux send-keys -t Soils:s4moisture "python3 node.py --name /soils/soil4/moisture" Enter
+tmux send-keys -t Soils:s4erosion "python3 node.py --name /soils/soil4/erosion" Enter
+tmux send-keys -t Soils:s4salinity "python3 node.py --name /soils/soil4/salinity" Enter
+tmux send-keys -t Soils:s4alert "python3 node.py --name /soils/soil4/alert" Enter
+tmux send-keys -t Soils:sfive "python3 node.py --name /soils/soil5" Enter
+tmux send-keys -t Soils:s5winds "python3 node.py --name /soils/soil5/winds" Enter
+tmux send-keys -t Soils:s5organicMatter "python3 node.py --name /soils/soil5/organicMatter" Enter
+tmux send-keys -t Soils:s5temperature "python3 node.py --name /soils/soil5/temperature" Enter
+tmux send-keys -t Soils:s5pH "python3 node.py --name /soils/soil5/pH" Enter
+tmux send-keys -t Soils:s5moisture "python3 node.py --name /soils/soil5/moisture" Enter
+tmux send-keys -t Soils:s5erosion "python3 node.py --name /soils/soil5/erosion" Enter
+tmux send-keys -t Soils:s5salinity "python3 node.py --name /soils/soil5/salinity" Enter
+tmux send-keys -t Soils:s5alert "python3 node.py --name /soils/soil5/alert" Enter
