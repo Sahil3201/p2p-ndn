@@ -11,6 +11,6 @@ for i in load_dict:
     # else: print(name)
     for j in i[name][1]['neighbors']:
         ret = ''.join((name.replace('/','_'), '->', j.replace('/','_')))
-        print(ret.replace('soil','s').replace('crop','d'))
+        print(ret.replace('soil','s').replace('crop','c'))
 
 print('}')

@@ -127,21 +127,21 @@ class Router:
             # set the largest level if match completely
             if str_packet == self.fib[k][0]:
                 loop_len = 9999
-                print(0)
-                print(self.fib[k])
+                # print(0)
+                # print(self.fib[k])
                 return [list(self.fib[k])]
             # If matches more than one string, it is added to the dictionary
             if prefix_len > 1:
                 match_fib[self.fib[k][0]] = loop_len
-        print("match_fib: ", match_fib)
+        # print("match_fib: ", match_fib)
         # rank the dictionary
         resorted = sorted(match_fib.items(), key=lambda x: x[1], reverse=True)
-        print("resorted: ", resorted)
+        # print("resorted: ", resorted)
         # return the data has the same format with fib table
         resorted_fib = list(tuple())
         for i in range(len(resorted)):
             for k in self.fib:
                 if (resorted[i][0] == k[0]) & (len(k[0].split('/')) != 4):
                     resorted_fib.append(k)
-        print("resorted_fib:", resorted_fib)
+        # print("resorted_fib:", resorted_fib)
         return resorted_fib

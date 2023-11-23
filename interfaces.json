@@ -265,7 +265,8 @@
             },
             {
                 "neighbors": [
-                    "/crops/crop1"
+                    "/crops/crop1",
+                    "/soils/soil5"
                 ]
             }
         ]

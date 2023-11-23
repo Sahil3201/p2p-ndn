@@ -54,10 +54,10 @@ def outbound(socket,router,lock, addr_port):
 def fresh(name, router):
     if name in router.getCS():
         if (float(time.time() - router.getCS()[name][1])) > 10.0:
-            print("Stale")
+            # print("Stale")
             return False
         else:
-            print("Fresh")
+            # print("Fresh")
             return True      
 
 def handle_packet(router, packet,socket):
