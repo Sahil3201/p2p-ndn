@@ -40,7 +40,7 @@ def outbound(socket,router,lock, addr_port):
         lock.acquire()
         #Send to some neighbor given longest prefix protocol or FIB
         neighbor = router.longestPrefix(interest)
-        packet = (interest, addr_port) # interest packet
+        packet = {"type": "interest", "dataname": interest, "addr_port": addr_port} # interest packet
         router.setPit(interest, addr_port)
         print("Sending: ",json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         socket.sendto(json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
@@ -60,24 +60,32 @@ def fresh(name, router):
             return True      
 
 def handle_packet(router, packet,socket):
+    """
+    interest packet: 
+    packet = {"type": "interest", "dataname": dataname, "addr_port": (<ip>, <listenport>)}
+
+    Data packet:
+    packet = {"type": "data", "dataname": dataname, "data": <data>, "freshness": <freshness in seconds>}
+    """
     print("HANDLING PACKET")
     packet = json.loads(packet.decode())
-    name = packet[0]
+    name = packet["dataname"]
     print(router)
     #Interest packet
-    if len(packet) == 2:
-        addr_port = packet[1]
+    if packet["type"] == "interest":
+        sender_addr_port = packet["addr_port"]
         print("Interest Packet Received!")
         if name in router.getCS() and fresh(name,router):
             print("I have the Data!")
             #Produce data packet name : data : freshness
-            packet = (name,router.getCS()[name],0) 
-            print("Forward to " + str(addr_port))
-            socket.sendto(json.dumps(packet).encode(), tuple(addr_port))
+            # packet = (name, router.getCS()[name], 0)
+            packet = {"type": "data", "dataname": name, "data":router.getCS()[name][0], "freshness": router.getCS()[name][1]}
+            print("Forward to " + str(sender_addr_port))
+            socket.sendto(json.dumps(packet).encode(), tuple(sender_addr_port))
             return
-        elif packet not in router.getPit():
+        elif (name, sender_addr_port) not in router.getPit():
             print("I don't have the Data, updating PIT!")
-            router.setPit(name, addr_port)
+            router.setPit(name, sender_addr_port)
             print("PIT ", router.getPit())
             #Forward Interest based on longest prefix
             next_node = router.longestPrefix(name)
@@ -93,21 +101,21 @@ def handle_packet(router, packet,socket):
                 router.updateMultiRequest()
             print(next_node)
             print("Forwarding to ", next_node[len(next_node)-1]) 
-            packet = (name, (router.getLocation()[1], router.getLocation()[2]))
+            packet = {"type": "interest", "dataname": name, "addr_port": (router.getLocation()[1], router.getLocation()[2])} # interest packet
             socket.sendto(json.dumps(packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
             return
 
     #Data packet
     else:
         print("Data packet Received!")
-        data = packet[1]
+        data = packet["data"]
         inPit = False
         #Remove elements in PIT which contain interest
         for interest in router.getPit():
             if interest[0] == name:
                 print("Satisfying interest table")
                 router.popPit(interest[0],interest[1])
-                print('*'*30,f"\n\t\tDATA IS: {data[0]}\n\n", '*'*30)
+                print('*'*30,f"\n\t\tDATA IS: {data}\n\n", '*'*30)
                 #Send data packet to requesters
                 if interest[1] != router.name:
                     address = interest[1]
@@ -116,7 +124,7 @@ def handle_packet(router, packet,socket):
                 inPit = True
         if inPit:
             print("Updating Content store")
-            router.setCS(name,data[0],data[1])
+            router.setCS(name,data, packet["freshness"])
             print(router.getCS())
             return
         else:
