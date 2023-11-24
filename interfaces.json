@@ -1279,5 +1279,19 @@
                 ]
             }
         ]
+    }, 
+    {
+        "centralNode": [
+            {
+                "listen port": 33998,
+                "send port": 33999,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
+                    "/soils/soil5"
+                ]
+            }
+        ]
     }
 ]

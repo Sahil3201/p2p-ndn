@@ -5,8 +5,8 @@ import json
 import time
 
 bufferSize  = 1024
-file = open('interfaces.json')
-references = json.load(file)
+with open('interfaces.json') as file:
+    references = json.load(file)
 
 #Finds the node with the given name in the reference json and returns its index
 def find_node(name):
@@ -59,7 +59,7 @@ def fresh(name, router):
             # print("Fresh")
             return True      
 
-def handle_packet(router, packet,socket):
+def handle_packet(router, packet, socket, interface):
     """
     interest packet: 
     packet = {"type": "interest", "dataname": dataname, "addr_port": (<ip>, <listenport>)}
@@ -106,7 +106,7 @@ def handle_packet(router, packet,socket):
             return
 
     #Data packet
-    else:
+    elif packet['type'] == 'data':
         print("Data packet Received!")
         data = packet["data"]
         inPit = False
@@ -131,17 +131,19 @@ def handle_packet(router, packet,socket):
             print("Not in interest table, ignore packet.")
             return
     
+    elif packet['type'] == 'publicKeyPayload':
+        return
     return
 
 # Listen for incoming datagrams
-def inbound(socket,name,lock,router):
+def inbound(socket,name,lock,router, interface):
     while(True):
         print("running inbound")
         bytesAddressPair = socket.recvfrom(bufferSize)
         print(f"\nRECEIVED DATA: {bytesAddressPair}")
         lock.acquire()
         message = bytesAddressPair[0]
-        handle_packet(router,message,socket)
+        handle_packet(router,message,socket, interface)
         lock.release()
 
 
@@ -168,7 +170,7 @@ class p2p_node():
         #setup inbound and outbound ports
         s_inbound,s_outbound = setup_sockets(self.listen_port,self.send_port)
         # creating thread
-        t1 = threading.Thread(target=inbound, args=(s_inbound,self.name,self.lock,self.router))
+        t1 = threading.Thread(target=inbound, args=(s_inbound,self.name,self.lock,self.router, self.interface))
         t2 = threading.Thread(target=outbound, args=(s_outbound,self.router,self.lock, (self.address, self.listen_port)))
         t3 = threading.Thread(target=update, args=(self.interface,self.router,self.name))
 

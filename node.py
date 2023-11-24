@@ -1,14 +1,7 @@
 from UDPNode1 import p2p_node
 from router import Router
 import argparse
-
-class Base():
-    def __init__(self, id):
-        self.data=id+"_data"
-
-    def update(self):
-        pass
-
+import interfaces
 
 if __name__ =="__main__":
     parser = argparse.ArgumentParser()
@@ -19,7 +12,10 @@ if __name__ =="__main__":
         print("Please specify node name")
         exit(1)
 
-    router = Router(args.name)
-    interface = Base(args.name)
-    node = p2p_node(args.name,router,interface)
-    node.run()
+    if args.name == 'centralNode':
+        node = CentralNode('centralNode')
+    else:
+        router = Router(args.name)
+        interface = interfaces.Base(args.name)
+        node = p2p_node(args.name,router,interface)
+        node.run()
