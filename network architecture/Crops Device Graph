@@ -1,0 +1,18 @@
+digraph {
+	crop_humidity	[label=humidity];
+	crop_oxygen	[label=oxygen];
+	crop_ethylene	[label=ethylene];
+	crop_carbonDioxide	[label=carbonDioxide];
+	crop_temperature	[label=temperature];
+	crop_moisture	[label=moisture];
+	crop_rainGauge	[label=rainGauge];
+	crop_camera	[label=camera];
+	crops -> crop_humidity	[minlen=1];
+	crops -> crop_oxygen	[minlen=2];
+	crops -> crop_ethylene	[minlen=3];
+	crops -> crop_carbonDioxide	[minlen=1];
+	crops -> crop_temperature	[minlen=2];
+	crops -> crop_moisture	[minlen=3];
+	crops -> crop_rainGauge	[minlen=1];
+	crops -> crop_camera	[minlen=2];
+}

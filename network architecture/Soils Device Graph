@@ -1,0 +1,18 @@
+digraph {
+	soil_moisture	[label=moisture];
+	soil_erosion	[label=erosion];
+	soil_salinity	[label=salinity];
+	soil_winds	[label=winds];
+	soil_organicMatter	[label=organicMatter];
+	soil_temperature	[label=temperature];
+	soil_pH	[label=pH];
+	soil_alert	[label=alert];
+	soils -> soil_moisture	[minlen=1];
+	soils -> soil_erosion	[minlen=2];
+	soils -> soil_salinity	[minlen=3];
+	soils -> soil_winds	[minlen=1];
+	soils -> soil_organicMatter	[minlen=2];
+	soils -> soil_temperature	[minlen=3];
+	soils -> soil_pH	[minlen=1];
+	soils -> soil_alert	[minlen=2];
+}
