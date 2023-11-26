@@ -1,36 +1,37 @@
 # p2p Name-Defined Network
 
-This repository is a group project for the TCD module CS7NS1: Scalable Computing. Our aim is to create a peer-to-peer (p2p) name-defined network designed for communication across multiple Raspberry Pi devices. The project is exemplified with an underwater mission emulation.
+This repository is a group project for the TCD module CS7NS1: Scalable Computing. Our aim is to create a peer-to-peer (p2p) name-defined network designed for communication across multiple Raspberry Pi devices. The project is exemplified with an agriculture mission emulation.
 
 ## Group 4 NDN Run Instructions
 
 To run our two name-defined networks on independent Raspberry Pi's, follow these instructions:
 
-### On any one of the Pi(s):
+### Setup:
 
-1. Cd into the project folder.
-2. Run the command: `source .tmux/centralNode`
+1. To start, you have to specify your ip address of the Raspberry Pi's in the interfaces.json file. Simply search and replace every instance of "10.35.70.46" with the ip address of your 1st pi and replace every instance of "10.35.70.4" with the ip address of your 2nd pi.
 
 ### On Pi 1:
 
 1. Cd into the project folder.
-2. Run the command: `source .tmux/ndn-crops`
-   - This starts the crop network.
+1. Run the command: `source .tmux/centralNode`
+   - This starts the Central Node authority network which managed the RSA public keys of devices.
+1. Run the command: `source .tmux/ndn-soils`
+   - This starts the Soil network.
 
 ### On Pi 2:
 
 1. Cd into the project folder.
-2. Run the command: `source .tmux/ndn-soils`
-   - This starts the soil network.
+2. Run the command: `source .tmux/ndn-crops`
+   - This starts the Crop network.
 
 ### On either or both Pi(s):
 
-1. Run the command: `tmux attach`
+1. Run the command: `tmux attach` on both pi.
    - This allows you to interface with the nodes in the network.
 2. To see a list of selectable nodes, press `Ctrl+b` and then `w`.
-3. Select a node with the arrow keys and press enter to use the node's terminal.
+3. Select a node (e.g. '/crops/crop2') with the arrow keys and press enter to use the node's terminal.
 4. The node's command line prompts to 'Ask the network for information:'.
-   - Type in some data name from the list of data names at the end of this document. If an invalid name is typed, the data won’t send.
+   - Type in some data name (e.g. /soils/soil3/moisture') from the list of data names at the end of this document. If an invalid name is typed, the data won’t send.
 5. Wait for the data to return. You can track the routing by switching to other nodes.
 6. To exit tmux, press `Ctrl+b` and then `d`.
 7. To kill the network and all running ports, enter the command: `tmux kill-server`
