@@ -1,0 +1,3 @@
+tmux new-session -d -s centralNode
+tmux new-window -n centralNode
+tmux send-keys -t centralNode:centralNode "python3 node.py --name centralNodes/centralNode1" Enter

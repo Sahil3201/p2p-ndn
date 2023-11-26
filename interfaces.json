@@ -388,7 +388,7 @@
             {
                 "listen port": 33055,
                 "send port": 33056,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -403,7 +403,7 @@
             {
                 "listen port": 33057,
                 "send port": 33058,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -417,7 +417,7 @@
             {
                 "listen port": 33059,
                 "send port": 33060,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -431,7 +431,7 @@
             {
                 "listen port": 33061,
                 "send port": 33062,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -445,7 +445,7 @@
             {
                 "listen port": 33063,
                 "send port": 33064,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -459,7 +459,7 @@
             {
                 "listen port": 33065,
                 "send port": 33066,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -473,7 +473,7 @@
             {
                 "listen port": 33067,
                 "send port": 33068,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -487,7 +487,7 @@
             {
                 "listen port": 33069,
                 "send port": 33070,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -501,7 +501,7 @@
             {
                 "listen port": 33071,
                 "send port": 33072,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -515,7 +515,7 @@
             {
                 "listen port": 33073,
                 "send port": 33074,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -530,7 +530,7 @@
             {
                 "listen port": 33075,
                 "send port": 33076,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -544,7 +544,7 @@
             {
                 "listen port": 33077,
                 "send port": 33078,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -558,7 +558,7 @@
             {
                 "listen port": 33079,
                 "send port": 33080,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -572,7 +572,7 @@
             {
                 "listen port": 33081,
                 "send port": 33082,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -586,7 +586,7 @@
             {
                 "listen port": 33083,
                 "send port": 33084,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -600,7 +600,7 @@
             {
                 "listen port": 33085,
                 "send port": 33086,
-                "address": "10.35.70.46"
+                "address": "10.35.70.4"
             },
             {
                 "neighbors": [
@@ -648,6 +648,7 @@
                 "neighbors": [
                     "/soils/soil3",
                     "/soils/soil4",
+                    "/soils/soil2",
                     "/crops/crop1",
                     "/crops/crop2"
                 ]
@@ -1276,6 +1277,45 @@
             {
                 "neighbors": [
                     "/soils/soil5"
+                ]
+            }
+        ]
+    },
+    {
+        "centralNodes/centralNode1": [
+            {
+                "listen port": 33994,
+                "send port": 33995,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
+                ]
+            }
+        ]
+    },
+    {
+        "centralNodes/centralNode2": [
+            {
+                "listen port": 33996,
+                "send port": 33997,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
+                ]
+            }
+        ]
+    },
+    {
+        "centralNodes/centralNode3": [
+            {
+                "listen port": 33998,
+                "send port": 33999,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
                 ]
             }
         ]

@@ -1,2 +1,8 @@
 *.pyc
 __pycache__
+*.save
+*.pyc
+
+# ignoring pem files also
+*.pem
+
