@@ -5,9 +5,10 @@ class Router:
         self.multi_request = 0
         self.name = name  # device name
         self.cs = dict()  # name: data: freshness # content store
-        self.pit = list(tuple())  # name, interest_sender_address (addr, listen_port) # Pending interest table
+        self.pit = list(tuple())  # (name, interest_sender_address (addr, listen_port), req_name, is_data_ready=False) # Pending interest table
         self.fib = list(tuple())  # prefix, ip address, ongoing interface # Forwarding information base
-        self.location = list(tuple()) #address, listen port, send port # stores its own location in the network
+        self.location = tuple() #name, address, listen port, send port # stores its own location in the network
+        self.centralNodes = list(tuple()) # (address, listen port) # Stores the information of the central nodes
 
         with open("interfaces.json", 'r') as load_f:
             load_dict = json.load(load_f)
@@ -15,13 +16,15 @@ class Router:
         #Set location and get the current device's neighbours
         neighbours_list = list()
         for i in range(len(load_dict)):
-            if(name == list(load_dict[i].keys())[0]):
+            nodeName = list(load_dict[i].keys())[0]
+            if(name == nodeName):
                 details = load_dict[i][name]
                 self.setLocation(name, details[0]["address"], details[0]["listen port"],
                                   details[0]["send port"])
                 neighbours_dict = load_dict[i][name][1]  # neighbours dictionary
                 neighbours_list = neighbours_dict[list(neighbours_dict.keys())[0]]  # neighbours list
-                break
+            elif(nodeName.split('/')[0] == 'centralNodes'):
+                self.centralNodes.append((load_dict[i][nodeName][0]['address'], load_dict[i][nodeName][0]['listen port']))
 
         # add neighbours into the current fib
         for neighbour_name in neighbours_list:
@@ -64,12 +67,16 @@ class Router:
         return self.pit
 
     # record the incoming interface of Interest Packet
-    def setPit(self, name, interest_sender_address):  # incoming interface
-        if (name, interest_sender_address) not in self.pit:
-            self.pit.append((name, interest_sender_address))
+    def setPit(self, name, interest_sender_address, requester_name, is_data_ready=False):  # incoming interface
+        if (name, interest_sender_address, requester_name, False) not in self.pit:
+            self.pit.append((name, interest_sender_address, requester_name, is_data_ready))
 
     def popPit(self,name, interest_sender_address):
-        self.pit.remove((name, interest_sender_address))
+        for i in self.pit:
+            if(i[0] == name and i[1]==interest_sender_address):
+                ret = i[2]
+                self.pit.remove(i)
+                return ret
 
     def getFib(self):
         return self.fib

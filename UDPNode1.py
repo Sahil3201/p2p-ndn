@@ -40,8 +40,8 @@ def outbound(socket,router,lock, addr_port):
         lock.acquire()
         #Send to some neighbor given longest prefix protocol or FIB
         neighbor = router.longestPrefix(interest)
-        packet = {"type": "interest", "dataname": interest, "addr_port": addr_port} # interest packet
-        router.setPit(interest, addr_port)
+        packet = {"type": "interest", "dataname": interest, "addr_port": addr_port, "req_name": router.name} # interest packet
+        router.setPit(interest, addr_port, router.name)
         print("Sending: ",json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         socket.sendto(json.dumps(packet).encode(), (neighbor[len(neighbor)-1][1],neighbor[len(neighbor)-1][2]))
         lock.release()
@@ -62,30 +62,38 @@ def fresh(name, router):
 def handle_packet(router, packet, socket, interface):
     """
     interest packet: 
-    packet = {"type": "interest", "dataname": dataname, "addr_port": (<ip>, <listenport>)}
+    packet = {"type": "interest", "dataname": dataname, "addr_port": (<ip>, <listenport>), "req_name":<requestor name>}
 
     Data packet:
     packet = {"type": "data", "dataname": dataname, "data": <data>, "freshness": <freshness in seconds>}
+
+    Public key interest packet
+    packet = {"type": "publicKeyRequest", "data":packet['req_name'], "return_address":(<ip address>, <listen port>)}
+    
+    Public Key data
+    packet = {"type": "publicKeyPayload", "data": <publicKey>, "dataname": <public key's device name>}
     """
     print("HANDLING PACKET")
     packet = json.loads(packet.decode())
-    name = packet["dataname"]
     print(router)
     #Interest packet
     if packet["type"] == "interest":
+        name = packet["dataname"]
         sender_addr_port = packet["addr_port"]
+        req_name = packet["req_name"]
         print("Interest Packet Received!")
         if name in router.getCS() and fresh(name,router):
             print("I have the Data!")
             #Produce data packet name : data : freshness
             # packet = (name, router.getCS()[name], 0)
-            packet = {"type": "data", "dataname": name, "data":router.getCS()[name][0], "freshness": router.getCS()[name][1]}
-            print("Forward to " + str(sender_addr_port))
-            socket.sendto(json.dumps(packet).encode(), tuple(sender_addr_port))
+            router.setPit(packet['dataname'], sender_addr_port, packet['req_name'], True)
+            packet = {"type": "publicKeyRequest", "data":packet['req_name'], "return_address":(router.location[1], router.location[2])}
+            print("Forward to " + router.centralNodes[0][0], router.centralNodes[0][1])
+            socket.sendto(json.dumps(packet).encode(), tuple((router.centralNodes[0][0], router.centralNodes[0][1])))
             return
-        elif (name, sender_addr_port) not in router.getPit():
+        elif (name, sender_addr_port, req_name) not in router.getPit():
             print("I don't have the Data, updating PIT!")
-            router.setPit(name, sender_addr_port)
+            router.setPit(name, sender_addr_port, req_name)
             print("PIT ", router.getPit())
             #Forward Interest based on longest prefix
             next_node = router.longestPrefix(name)
@@ -101,12 +109,13 @@ def handle_packet(router, packet, socket, interface):
                 router.updateMultiRequest()
             print(next_node)
             print("Forwarding to ", next_node[len(next_node)-1]) 
-            packet = {"type": "interest", "dataname": name, "addr_port": (router.getLocation()[1], router.getLocation()[2])} # interest packet
-            socket.sendto(json.dumps(packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
+            interest_packet = {"type": "interest", "dataname": name, "addr_port": (router.getLocation()[1], router.getLocation()[2]), "req_name": packet['req_name']} # interest packet
+            socket.sendto(json.dumps(interest_packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
             return
 
     #Data packet
     elif packet['type'] == 'data':
+        name = packet["dataname"]
         print("Data packet Received!")
         data = packet["data"]
         inPit = False
@@ -115,9 +124,13 @@ def handle_packet(router, packet, socket, interface):
             if interest[0] == name:
                 print("Satisfying interest table")
                 router.popPit(interest[0],interest[1])
-                print('*'*30,f"\n\t\tDATA IS: {data}\n\n", '*'*30)
                 #Send data packet to requesters
-                if interest[1] != router.name:
+                # print(interest[1][1], router.location[1], interest[1][2], router.location[2])
+                if interest[1][0] == router.location[1] and interest[1][1]==router.location[2]:
+                    print(type(data))
+                    print(data)
+                    print('#'*30,f"\n\t\tDATA IS: {interface.decrypt_message(data)}\n\n", '#'*30)
+                else:
                     address = interest[1]
                     print(json.dumps(packet).encode(), address)
                     socket.sendto(json.dumps(packet).encode(), tuple(address))
@@ -132,6 +145,23 @@ def handle_packet(router, packet, socket, interface):
             return
     
     elif packet['type'] == 'publicKeyPayload':
+        req_name = packet["dataname"]
+        public_key = packet['data']
+        for i in router.getPit():
+            if(i[2]==req_name and i[3]==True):
+                dataname = i[0]
+                addr = i[1]
+        if not dataname:
+            print('Interest not in pit table: Returning')
+            return
+        publicKey = packet['data']
+        router.popPit(dataname, addr)
+        encrypted_data = interface.encrypt_message(message=router.getCS()[dataname][0], public_key_str=public_key)
+        packet = {"type": "data", "dataname": dataname, "data":encrypted_data, "freshness": router.getCS()[dataname][1]}
+        print("Forward to " + str(addr))
+        print("encrypted data:", encrypted_data)
+        print(json.dumps(packet).encode(), tuple(addr))
+        socket.sendto(json.dumps(packet).encode(), tuple(addr))
         return
     return
 
@@ -165,10 +195,19 @@ class p2p_node():
         self.listen_port = network_details[0]["listen port"]
         self.send_port = network_details[0]["send port"]
         self.address = network_details[0]["address"]
+
+    def send_public_key_to_central_node(self, socket):
+        centralNode = self.router.centralNodes[0]
+        publicKeyPayload_packet = {"type": "publicKeyPayload", "data": self.interface.save_public_key(save_to_disk=False, return_type_string=True), "dataname": self.router.name}
+        print("Sending: ",json.dumps(publicKeyPayload_packet).encode(), (centralNode[0], centralNode[1]))
+        socket.sendto(json.dumps(publicKeyPayload_packet).encode(), (centralNode[0], centralNode[1]))
     
     def run(self):
         #setup inbound and outbound ports
         s_inbound,s_outbound = setup_sockets(self.listen_port,self.send_port)
+
+        self.send_public_key_to_central_node(s_outbound)
+        
         # creating thread
         t1 = threading.Thread(target=inbound, args=(s_inbound,self.name,self.lock,self.router, self.interface))
         t2 = threading.Thread(target=outbound, args=(s_outbound,self.router,self.lock, (self.address, self.listen_port)))

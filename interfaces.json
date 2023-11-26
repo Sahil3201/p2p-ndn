@@ -1279,9 +1279,35 @@
                 ]
             }
         ]
-    }, 
+    },
     {
-        "centralNode": [
+        "centralNodes/centralNode1": [
+            {
+                "listen port": 33994,
+                "send port": 33995,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
+                ]
+            }
+        ]
+    },
+    {
+        "centralNodes/centralNode2": [
+            {
+                "listen port": 33996,
+                "send port": 33997,
+                "address": "10.35.70.46"
+            },
+            {
+                "neighbors": [
+                ]
+            }
+        ]
+    },
+    {
+        "centralNodes/centralNode3": [
             {
                 "listen port": 33998,
                 "send port": 33999,
@@ -1289,7 +1315,6 @@
             },
             {
                 "neighbors": [
-                    "/soils/soil5"
                 ]
             }
         ]
