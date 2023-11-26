@@ -73,9 +73,10 @@ def handle_packet(router, packet, socket, interface):
     Public Key data
     packet = {"type": "publicKeyPayload", "data": <publicKey>, "dataname": <public key's device name>}
     """
-    print("HANDLING PACKET")
+    # print("HANDLING PACKET")
     packet = json.loads(packet.decode())
     print(router)
+    print(packet)
     #Interest packet
     if not "type" in packet: return # possibly ignore message from other pi's not using this implementation
     if packet["type"] == "interest":
@@ -170,9 +171,9 @@ def inbound(socket,name,lock,router, interface):
     while(True):
         # print("running inbound")
         bytesAddressPair = socket.recvfrom(bufferSize)
-        print(f"\nRECEIVED DATA")
         lock.acquire()
         message = bytesAddressPair[0]
+        print(f"\nRECEIVED DATA & HANDLING PACKET")
         handle_packet(router,message,socket, interface)
         lock.release()
 

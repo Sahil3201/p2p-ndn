@@ -1294,7 +1294,7 @@
         ]
     },
     {
-        "/centralNodes/centralNode2": [
+        "centralNodes/centralNode2": [
             {
                 "listen port": 33996,
                 "send port": 33997,
@@ -1307,7 +1307,7 @@
         ]
     },
     {
-        "/centralNodes/centralNode3": [
+        "centralNodes/centralNode3": [
             {
                 "listen port": 33998,
                 "send port": 33999,
