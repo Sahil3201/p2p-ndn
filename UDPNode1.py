@@ -74,8 +74,8 @@ def handle_packet(router, packet, socket, interface):
     packet = {"type": "publicKeyPayload", "data": <publicKey>, "dataname": <public key's device name>}
     """
     # print("HANDLING PACKET")
-    if not "type" in packet: return # possibly ignore message from other pi's not using this implementation
     packet = json.loads(packet.decode())
+    if not "type" in packet: return # possibly ignore message from other pi's not using this implementation
     print(router)
     print(packet)
     #Interest packet
