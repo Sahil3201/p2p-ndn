@@ -2,12 +2,12 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.backends import default_backend
-import base64
+import base64, random
 
 class Base():
     def __init__(self, id):
         # Generate RSA key pair
-        self.name = id
+        self.name = str(id)
         self.data = id+"_data"
         self._private_key = rsa.generate_private_key(
             public_exponent=65537,
@@ -28,7 +28,6 @@ class Base():
                 f.write(pem)
         if(return_type_string):
             return pem.decode('utf-8')
-        print(type(pem))
         return pem
 
     def encrypt_message(self, message: str, public_key=None, public_key_str:str=None):
@@ -52,13 +51,13 @@ class Base():
                 label=None
             )
         )
-        print('encrypted_bytes:', ret, "\nencyrpted usign:", public_key_str)
+        # print('encrypted_bytes:', ret, "\nencyrpted usign:", public_key_str)
         ret = base64.b64encode(ret).decode('utf-8')
         return ret #.encode()
 
     def decrypt_message(self, message):
         encrypted_bytes = base64.b64decode(message)
-        print('encrypted_bytes:', encrypted_bytes, "\nencyrpted usign:", self.save_public_key(save_to_disk=False))
+        # print('encrypted_bytes:', encrypted_bytes, "\nencyrpted usign:", self.save_public_key(save_to_disk=False))
         # Decrypt the message using the private key
         return self._private_key.decrypt(
             encrypted_bytes,
@@ -102,19 +101,32 @@ class Base():
         pass
 
 
+class TrueFalse(Base):
+    def __init__(self,id):
+        super().__init__(id)
+        self.data = random.choice([str(self.name)+' is on.', str(self.name)+' is off.'])
 
+    def update(self):
+        self.data = random.choice([str(self.name)+' is on.', str(self.name)+' is off.'])
 
+class ValueRange(Base):
+    def __init__(self, id, _min, _max, postfix_text=''):
+        super().__init__(id)
+        self._min = _min
+        self._max = _max
+        self.sensor_name = self.name.split('/')[-1]
+        self.postfix_text = postfix_text
+        self.data = self.sensor_name + ' level: ' + str(random.randint(self._min, self._max)) + self.postfix_text
 
+    def update(self):
+        self.data = self.sensor_name + ' level: ' + str(random.randint(self._min, self._max)) + self.postfix_text
 
+class RandomText(Base):
+    def __init__(self, id, _texts):
+        super().__init__(id)
+        self._texts = _texts
+        self.sensor_name = self.name.split('/')[-1]
+        self.data = self.sensor_name + ' level: ' + random.choice(self._texts)
 
-
-
-
-
-
-# # Serialize and save the private key
-# pem = private_key.private_bytes(
-#     encoding=serialization.Encoding.PEM,
-#     format=serialization.PrivateFormat.TraditionalOpenSSL,
-#     encryption_algorithm=serialization.NoEncryption()
-# )
+    def update(self):
+        self.data = self.sensor_name + ' level: ' + random.choice(self._texts)

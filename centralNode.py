@@ -71,4 +71,4 @@ class CentralNode(Base):
         # t3.join()
 
     def __str__(self):
-        return str(self.keystore)
+        return str(len(self.keystore.keys()))

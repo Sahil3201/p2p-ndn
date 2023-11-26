@@ -77,6 +77,7 @@ def handle_packet(router, packet, socket, interface):
     packet = json.loads(packet.decode())
     print(router)
     #Interest packet
+    if not "type" in packet: return # possibly ignore message from other pi's not using this implementation
     if packet["type"] == "interest":
         name = packet["dataname"]
         sender_addr_port = packet["addr_port"]
@@ -107,7 +108,7 @@ def handle_packet(router, packet, socket, interface):
             else:
                 next_node = router.longestPrefix(name)
                 router.updateMultiRequest()
-            print(next_node)
+            # print(next_node)
             print("Forwarding to ", next_node[len(next_node)-1]) 
             interest_packet = {"type": "interest", "dataname": name, "addr_port": (router.getLocation()[1], router.getLocation()[2]), "req_name": packet['req_name']} # interest packet
             socket.sendto(json.dumps(interest_packet).encode(), (next_node[len(next_node)-1][1], next_node[len(next_node)-1][2]))
@@ -127,18 +128,18 @@ def handle_packet(router, packet, socket, interface):
                 #Send data packet to requesters
                 # print(interest[1][1], router.location[1], interest[1][2], router.location[2])
                 if interest[1][0] == router.location[1] and interest[1][1]==router.location[2]:
-                    print(type(data))
-                    print(data)
-                    print('#'*30,f"\n\t\tDATA IS: {interface.decrypt_message(data)}\n\n", '#'*30)
+                    # print(data)
+                    print("Decrypting data..")
+                    print('\n\n','#'*30,f"\n\t\tDATA IS: {interface.decrypt_message(data)}\n", '#'*30, '\n\n')
                 else:
                     address = interest[1]
-                    print(json.dumps(packet).encode(), address)
+                    # print(json.dumps(packet).encode(), address)
                     socket.sendto(json.dumps(packet).encode(), tuple(address))
                 inPit = True
         if inPit:
-            print("Updating Content store")
+            print("Got Data")
             router.setCS(name,data, packet["freshness"])
-            print(router.getCS())
+            # print(router.getCS())
             return
         else:
             print("Not in interest table, ignore packet.")
@@ -159,8 +160,7 @@ def handle_packet(router, packet, socket, interface):
         encrypted_data = interface.encrypt_message(message=router.getCS()[dataname][0], public_key_str=public_key)
         packet = {"type": "data", "dataname": dataname, "data":encrypted_data, "freshness": router.getCS()[dataname][1]}
         print("Forward to " + str(addr))
-        print("encrypted data:", encrypted_data)
-        print(json.dumps(packet).encode(), tuple(addr))
+        # print(json.dumps(packet).encode(), tuple(addr))
         socket.sendto(json.dumps(packet).encode(), tuple(addr))
         return
     return
@@ -168,9 +168,9 @@ def handle_packet(router, packet, socket, interface):
 # Listen for incoming datagrams
 def inbound(socket,name,lock,router, interface):
     while(True):
-        print("running inbound")
+        # print("running inbound")
         bytesAddressPair = socket.recvfrom(bufferSize)
-        print(f"\nRECEIVED DATA: {bytesAddressPair}")
+        print(f"\nRECEIVED DATA")
         lock.acquire()
         message = bytesAddressPair[0]
         handle_packet(router,message,socket, interface)
