@@ -9,6 +9,7 @@ To run our two name-defined networks on independent Raspberry Pi's, follow these
 ### Setup:
 
 1. To start, you have to specify your ip address of the Raspberry Pi's in the interfaces.json file. Simply search and replace every instance of "10.35.70.46" with the ip address of your 1st pi and replace every instance of "10.35.70.4" with the ip address of your 2nd pi.
+1. To make sure all the python libraries are on your system, run `pip install -r requirements.txt`
 
 ### On Pi 1:
 
