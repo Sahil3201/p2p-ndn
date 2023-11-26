@@ -61,7 +61,8 @@ class Router:
 
     # cache new data
     def setCS(self, name, data, freshness):
-        self.cs[name] = [data,freshness]
+        if(name == self.name):
+            self.cs[name] = [data,freshness]
 
     def getPit(self):
         return self.pit
