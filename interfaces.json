@@ -648,6 +648,7 @@
                 "neighbors": [
                     "/soils/soil3",
                     "/soils/soil4",
+                    "/soils/soil2",
                     "/crops/crop1",
                     "/crops/crop2"
                 ]
