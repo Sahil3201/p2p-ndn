@@ -45,6 +45,19 @@ The network is divided into two types of devices - nodes and sensors.
 
 Nodes with two-level names can access data from every other sensor or node. If an attempt is made to get data from sensors away from its node network, it will fail to retrieve the data. However, nodes can retrieve data from all sensors in the entire network of networks.
 
+#### Network graph
+The network nodes are connected in the following manner:
+
+![Network Graph](https://github.com/Sahil3201/p2p-ndn/blob/minimal/network%20architecture/Network%20Graph.png)
+
+The Crops nodes have the following device sensors:
+
+<img src="https://github.com/Sahil3201/p2p-ndn/blob/minimal/network%20architecture/Crops%20Device%20Graph.png" alt="Crops Device Graph" style="width:1000px;"/>
+
+The Soils nodes have the following device sensors:
+
+<img src="https://github.com/Sahil3201/p2p-ndn/blob/minimal/network%20architecture/Soils%20Device%20Graph.png" alt="Soils Device Graph" style="width:1000px;"/>
+
 ### List of Data Names
 #### List of Names of Nodes
 "/crops/crop1",

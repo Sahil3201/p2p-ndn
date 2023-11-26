@@ -76,6 +76,7 @@ def handle_packet(router, packet, socket, interface):
     # print("HANDLING PACKET")
     packet = json.loads(packet.decode())
     if not "type" in packet: return # possibly ignore message from other pi's not using this implementation
+    print(f"\nRECEIVED DATA & HANDLING PACKET")
     print(router)
     print(packet)
     #Interest packet
@@ -173,7 +174,6 @@ def inbound(socket,name,lock,router, interface):
         bytesAddressPair = socket.recvfrom(bufferSize)
         lock.acquire()
         message = bytesAddressPair[0]
-        print(f"\nRECEIVED DATA & HANDLING PACKET")
         handle_packet(router,message,socket, interface)
         lock.release()
 

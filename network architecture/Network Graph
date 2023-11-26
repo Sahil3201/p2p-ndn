@@ -9,6 +9,7 @@ digraph {
 	soil1 -> crop1;
 	soil1 -> crop2;
 	soil1 -> soil4;
+	soil1 -> soil2;
 	soil1 -> soil3;
 	crop2 -> crop4;
 	crop2 -> soil1;
